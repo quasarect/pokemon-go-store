@@ -1,0 +1,38 @@
+.account-types{
+    position: relative;
+    background: var(  --bg-color-type1);
+    height: 29vw;
+    width: auto;
+    /* padding: 0rem 3rem; */
+}
+.cards{
+    display: flex;
+    justify-content: space-between;
+    width:-webkit-fill-available;
+    width: -moz-available;
+    position: absolute;
+    top: -75px;
+    margin: 0rem 3rem;
+}
+.about-us-title{
+    border: 2px solid var(--bg-color-type1);
+    background: var(  --bg-color-type1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 500;
+    padding-bottom: 1rem;
+    color: var(--text-color1);
+}
+@media screen and (max-width:600px) {
+    .account-types{
+        /* height: 85vh; */
+        height: 152vw;
+    }
+    .cards{
+        flex-direction: column;
+        margin: 0rem 2rem;
+    }
+}
+

@@ -1,0 +1,23 @@
+.red-btn{
+    background: #FF3647;
+    width: fit-content;
+    width: -moz-fit-content;
+    /* padding: 16px 64px; */
+    padding: 3% 16%;
+    border-radius: 20px;
+    /* font-size: 24px; */
+    font-size: 1.8vw;
+    color: #fff;
+    margin: 2rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:600px) {
+    .red-btn{
+        margin: 1rem 0rem;
+        padding: 3% 12%;
+        font-size: 17px;
+    }
+}
