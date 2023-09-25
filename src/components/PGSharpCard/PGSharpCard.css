@@ -1,0 +1,58 @@
+.pgSharpCard{
+    /* width: 18vw; */
+    width: 17.5vw;
+    background-color: var(--bg-color-type2);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 1vw;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pg-detail{
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color1);
+    margin: 4px 0px;
+}
+.pg-price{
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 1rem;
+    color: var(--text-color1);
+}
+.pgSharpCard .red-btn{
+    margin: 0.5rem 0rem 1rem 0rem;
+    font-size: 17px;
+    padding: 0.6rem 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media screen and (max-width:868px){
+    .pgSharpCard{
+        margin: 1.2vw;
+        width: 15.5vw;
+    }
+    .pg-detail{
+        font-size: 1.3vw;
+    }
+    .pg-price {
+        font-size: 20px;
+    }
+    .pgSharpCard .red-btn{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:600px){
+    .pgSharpCard{
+        width: 32vw;
+        margin: 2vw;
+    }
+    .pg-detail{
+        font-size: 10px;
+    }
+    .pgSharpCard .red-btn{
+        margin: 0.5rem 0;
+    }
+}
