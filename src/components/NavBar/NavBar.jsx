@@ -5,7 +5,8 @@ import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, useLocation } from 'react-router-dom';
-// import {Darkmode} from '../../utils/Darkmode';
+import ProfilePic from '../ProfilePic/ProfilePic';
+import DefaultProfileImage from '../../assets/images/defaultProfileImage.svg'
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -20,6 +21,7 @@ const NavBar = () => {
         setMenuOpen(!menuOpen);
     };
 
+    // darkMode function
     const [theme, setTheme] = useState("light-theme");
     const toggleTheme =()=>{
         (theme === "dark-theme")?setTheme("light-theme"):setTheme("dark-theme");
@@ -27,7 +29,6 @@ const NavBar = () => {
 
     useEffect(() => {
       document.body.className = theme;
-    //   console.log(document.body.className);
     }, [theme])
 
     return (
@@ -45,7 +46,12 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-right navbar-text-align">
-                    <div className="login-signup-btn"> LOGIN / SIGNUP</div>
+                    {
+                        (location.pathname === "/profile")?
+                        <div className={location.pathname == "/profile" ? "nav-el nav-elem-border" : "nav-el"}><ProfilePic profileImage={DefaultProfileImage}/></div>
+                        :
+                        <Link to="/profile" className={location.pathname == "/" ? "nav-el nav-elem-border" : "nav-el"}><div className="login-signup-btn"> LOGIN / SIGNUP</div></Link>
+                    }
                     <div className="dark-mode-icon" onClick={toggleTheme}><LightbulbOutlinedIcon  /></div>
                     <div className="menuIcon" onClick={toggleMenu}>
                         {!menuOpen ? <MenuOutlinedIcon /> : <CloseIcon/>}

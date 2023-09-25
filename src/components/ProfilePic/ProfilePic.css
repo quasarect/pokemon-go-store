@@ -1,0 +1,10 @@
+.profile-pic:hover {
+    border-bottom: 2px solid red;
+}
+.profile-pic img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid #000;
+    object-fit: cover;
+}

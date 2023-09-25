@@ -29,7 +29,7 @@ const Accounts = () => {
       {
         cards.map((item,id) => (
           <div className='shop-card' key={id}>
-            <Link to={"/:"+id} className='card-link' ><ShopAccountCard level = {item.level} /></Link>
+            <Link to={":"+id} className='card-link' ><ShopAccountCard level = {item.level} /></Link>
           </div>
         ))
       }
