@@ -1,0 +1,84 @@
+.carousel{
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: var(--bg-color-type1);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+/* ########################################################## */
+.Larrow{
+    font-size: 40px;
+    color: #FF3647;
+    margin: 0px 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #FF3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    transform: translate(0,50%);
+    z-index: 1;
+    cursor: pointer;
+}
+.Larrow :hover{
+    color:#000;
+
+}
+.Rarrow{
+    font-size: 40px;
+    color: #FF3647;
+    margin: 0px 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #FF3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    right: 0%;
+    transform: translate(0,50%);
+    z-index: 1;
+    cursor: pointer;
+}
+.Rarrow :hover{
+    color:#000;
+}
+.dotContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+
+}
+.dot{
+    margin: 5px;
+    cursor: pointer;
+    color: var(--text-color1);
+    /* border: 1px solid white;
+    border-radius: 100%; */
+}
+.active-dot{
+    color: #FF3647;
+    margin: 5px;
+    /* border: 1px solid white; */
+    
+}
+
+@media screen and (max-width:600px) {
+    .carousel{
+        position: relative;
+        width: 100%;
+    } 
+}
+
+
+

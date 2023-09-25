@@ -5,6 +5,7 @@ import Shop from './pages/Shop/Shop';
 import ContactUs from './pages/ContactUs/ContactUs';
 import Accounts from './pages/Accounts/Accounts';
 import PGSharp from './pages/PGSharp/PGSharp';
+import CardDetail from './pages/CardDetail/CardDetail';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route index path='accounts' element={<Accounts/>}/>
             <Route path='pg-sharps' element={<PGSharp/>}/>
           </Route>
+            <Route path='/:id' element={<CardDetail/>}/>
           <Route path='contactUs' element={<ContactUs/>}/>
         </Route>
       </Routes>

@@ -1,0 +1,67 @@
+.shop-account-detail {
+    background-color: var(--bg-color-type1);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    padding: 2rem 3rem;
+    /* padding: 1rem 2rem; */
+    /* height: fit-content; */
+    /* font-size: 16px; */
+    height: 70vh;
+    /* height: fit-content; */
+    font-size: 1.125vw;
+    font-weight: 500;
+    width: 64%;
+    margin-left: 2rem;
+    color: var(--text-color1);
+}
+
+.sh-d {
+    width: 132px;
+    clear: left;
+    float: left;
+    text-align: right;
+    padding-right: 2px;
+    margin-right: 90px;
+    text-align: left;
+}
+
+.sh-btn {
+    display: flex;
+    justify-content: right;
+}
+
+.sh-btn .red-btn {
+    padding: 0.5% 4%;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+
+@media screen and (max-width:868px) {
+    .shop-account-detail {
+        /* height: 27vh; */
+        height: fit-content;
+        padding: 1.5rem;
+        font-size: 1.3vw;
+    }
+    
+    .sh-d {
+        margin-right: 36px;
+    }
+}
+@media screen and (max-width:600px) {
+    .shop-account-detail {
+        width: auto;
+        margin: 2rem 0rem;
+        padding: 1rem;
+        font-size: 8px;
+        height: auto;
+    }
+    .sh-d {
+        margin-right: -40px;
+    }
+    .sh-btn .red-btn {
+        font-size: 14px;
+    }
+}

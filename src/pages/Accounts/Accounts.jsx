@@ -1,6 +1,7 @@
 import React from 'react';
 import './Accounts.css'
 import ShopAccountCard from '../../components/ShopAccountCard/ShopAccountCard';
+import { Link } from 'react-router-dom';
 
 const Accounts = () => {
   const cards = [
@@ -28,7 +29,7 @@ const Accounts = () => {
       {
         cards.map((item,id) => (
           <div className='shop-card' key={id}>
-            <ShopAccountCard level = {item.level} />
+            <Link to={"/:"+id} className='card-link' ><ShopAccountCard level = {item.level} /></Link>
           </div>
         ))
       }
