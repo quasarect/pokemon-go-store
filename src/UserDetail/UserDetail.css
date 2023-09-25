@@ -1,6 +1,7 @@
 .user-detail{
     background-color: var(--bg-color-type1);
-    width: 36%;
+    /* width: 36%; */
+    /* width: 28%; */
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 1rem 2rem;
@@ -9,16 +10,89 @@
     justify-content: center;
     flex-direction: column;
 }
+.user-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .user-detail .profile-pic img{
-    width: 24vw;
-    height: 24vw;
+    width: 16vw;
+    height: 16vw;
     margin: 1rem 0rem;
+}
+.user-detail .profile-pic{
+    border: none;
 }
 .user-name{
     font-size: 24px;
     font-weight: 600;
     margin: 0.5rem 0rem;
+    color: var(--text-color1);
 }
 .user-email{
     font-weight: 500;
+    color: var(--text-color1);
+}
+.user-feature{
+    margin: 1rem 0rem;
+}
+
+.user-feature-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.user-feature-row .btn-wrapper .black-btn-name{
+    width: 8vw;
+    font-weight: 500;
+    margin: 1vw;
+    font-size: 1.2vw;
+    color: var(--bg-color-type1);
+    background-color: var(--text-color1);
+    cursor: pointer;
+}
+
+.user-feature-row .btn-wrapper .black-btn-name:hover{
+    border-bottom: solid 4px #FF3647;
+}
+
+.user-active-style{
+    border-bottom: solid 4px #FF3647;
+}
+
+@media screen and (max-width:868px) {
+    .user-detail{
+        flex-direction: unset;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+    }
+    .user-detail .profile-pic img{
+        margin: 0;
+    }
+    .user-feature{
+        width: 68%;
+        height: 20vh;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    .user-feature-row{
+        justify-content: space-between;
+    }
+    .user-feature-row .btn-wrapper .black-btn-name{
+        width: 14vw;
+        font-size: 2.2vw;
+    }
+}
+
+@media screen and (max-width:868px) {
+    .user-detail{
+        padding: 1rem;
+    }
+    .user-feature-row .btn-wrapper .black-btn-name{
+        font-size: 10px;
+    }
 }

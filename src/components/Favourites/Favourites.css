@@ -1,0 +1,70 @@
+.favourites {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.favourite-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color1);
+}
+
+.favourites-cards {
+    background-color: var(--bg-color-type1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.favourites-cards .card .shop-account-card {
+    width: 16vw;
+}
+
+.favourites-cards .card .shop-account-card .sa-card-top {
+    height: 156px;
+}
+
+.favourites-cards .card .shop-account-card .sa-card-bottom .card-details .level,
+.P-storage,
+.I-storage,
+.shiny,
+.legendry {
+    margin: 0;
+    font-weight: 400;
+}
+
+@media screen and (max-width:1100px) {
+    .favourite-title {
+        display: none;
+    }
+    .favourites-cards .card .shop-account-card .sa-card-top {
+        height: 122px;
+    }
+
+    .favourites-cards .card .shop-account-card {
+        width: 14vw;
+    }
+}
+
+@media screen and (max-width:868px) {
+    .favourites-cards .card .shop-account-card {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .favourites-cards{
+        padding: 1rem 0.5rem;
+    }
+    .favourites-cards .card .shop-account-card {
+        width: 39vw;
+    }
+    .favourites-cards .card .shop-account-card .sa-card-bottom{
+        margin: 0;;
+    }
+}

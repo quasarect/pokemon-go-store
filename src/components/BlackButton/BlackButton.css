@@ -8,3 +8,7 @@
     height: 19px;
     padding: 0.5rem 1.1rem;
 }
+
+.user-active-style{
+    border-bottom: solid 4px #FF3647;
+}

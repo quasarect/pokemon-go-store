@@ -1,6 +1,5 @@
 import React from 'react';
 import './BlackButton.css'
-import { useLocation } from 'react-router-dom';
 
 const BlackButton = ({text}) => {
 
