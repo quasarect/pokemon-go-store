@@ -1,0 +1,33 @@
+.shop{
+    padding: 1rem 1.9rem;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: space-between;
+    background-color: var(--bg-color-type2);
+    height: 100%;
+}
+.shop-component{
+    /* display: flex; */
+    flex-direction: column;
+    width: 74%;
+    margin-left: 1.5rem;
+}
+
+@media screen and (max-width:868px){
+    .shop{
+       min-height: 100vh;
+    }
+
+}
+@media screen and (max-width:600px){
+    .shop{
+        padding: 0.5rem;
+        justify-content: unset;
+        flex-direction: column;
+        height: 100%;
+    }
+    .shop-component{
+        margin: 0px;
+        width: auto;
+    }
+}

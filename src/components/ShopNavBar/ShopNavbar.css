@@ -1,0 +1,38 @@
+.shopnavbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.shop-btn-link{
+    text-decoration: none;
+    margin: 0rem 0.5rem;
+}
+.shop-btn-link .black-btn-name{
+    font-size: 1vw;
+}
+.shop-btn-link:hover{
+    border-bottom: solid 2px #FF3647;
+}
+
+.shop-btn-link-active{
+    border-bottom: solid 2px #FF3647;
+}
+
+@media screen and (max-width: 868px) {
+    .shop-btn-link{
+        display: flex;
+        align-items: center;
+    }
+    .shop-btn-link .black-btn-name{
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 600px) {
+    .shop-btn-link{
+        margin: 0;
+    }
+    .shop-btn-link .black-btn-name{
+        font-size: 1rem;
+    }
+}

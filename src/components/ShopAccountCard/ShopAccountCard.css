@@ -1,0 +1,84 @@
+.shop-account-card{
+    /* width: 300px;  */
+    /* width: 262px; */
+    width: 18vw;
+    /* height: 316px;  */
+    background-color: var(--bg-color-type2);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* margin:1rem; */
+    margin: 1.5vw;
+
+}
+.sa-card-top{
+    width: 98%;
+    height: 178px;
+}
+.sa-card-top img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border: 3px solid #1BA6C9;
+}
+.sa-card-bottom{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.5rem;
+    margin: 0.8rem 0rem;
+}
+.level ,.P-storage, .I-storage, .shiny, .legendry{
+    font-weight: 600;
+    margin: 3px;
+    color: var(--text-color1);
+    /* font-size: 15px; */
+    font-size: 1vw;
+}
+.price{
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-color1);
+}
+.card-price{
+    width: 50%;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card-price .red-btn{
+    /* font-size: 16px; */
+    font-size: 1.2vw;
+    margin: 1rem 0rem;
+    padding: 7% 9%;
+    margin-bottom: 0rem;
+}
+
+@media screen and (max-width:868px){
+    .shop-account-card{
+        margin: 1.2vw;
+    }
+    .sa-card-top{
+        width: 98%;
+        height: 96px;
+    }
+}
+@media screen and (max-width:600px){
+    .shop-account-card{
+        width: 41vw;
+        margin: 2vw;
+    }
+    .sa-card-top{
+        height: 96px;
+    }
+    .level ,.P-storage, .I-storage, .shiny, .legendry{
+        font-size: 9px;
+    }
+    .price {
+        font-size: 24px;
+    }
+    .card-price .red-btn {
+        font-size: 9px;
+    }
+}

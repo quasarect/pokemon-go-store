@@ -76,7 +76,7 @@
     }
     .menuIcon{
         display: flex;
-        color: var(--);
+        color: var(--text-color1);
     }
     .menuItem{
         background-color: var(--bg-color-type1);

@@ -40,7 +40,7 @@ const NavBar = () => {
                 <div className="navbar-middle">
                     <ul className='navbar-text-align'>
                         <li><Link className={location.pathname == "/" ? "nav-el nav-elem-border" : "nav-el"} to="/">HOME</Link></li>
-                        <li><Link className={location.pathname == "/shop" ? "nav-el nav-elem-border" : "nav-el"} to="/shop">SHOP</Link></li>
+                        <li><Link className={location.pathname.slice(0,5) == "/shop" ? "nav-el nav-elem-border" : "nav-el"} to="/shop">SHOP</Link></li>
                         <li><Link className={location.pathname == "/contactUs" ? "nav-el nav-elem-border" : "nav-el"} to="/contactUs">CONTACT US</Link></li>
                     </ul>
                 </div>
@@ -48,7 +48,7 @@ const NavBar = () => {
                     <div className="login-signup-btn"> LOGIN / SIGNUP</div>
                     <div className="dark-mode-icon" onClick={toggleTheme}><LightbulbOutlinedIcon  /></div>
                     <div className="menuIcon" onClick={toggleMenu}>
-                        {!menuOpen ? <MenuOutlinedIcon /> : <CloseIcon />}
+                        {!menuOpen ? <MenuOutlinedIcon /> : <CloseIcon/>}
                     </div>
                 </div>
             </nav>
