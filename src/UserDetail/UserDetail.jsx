@@ -17,12 +17,12 @@ const UserDetail = ({name,email}) => {
 
         <div className="user-feature">
             <div className="user-feature-row">
-                <BlackButton text={"FAVOURITES"}/>
-                <BlackButton  text={"BUY CREDITS"} />
+               <Link className='link-text' to="/profile"> <BlackButton text={"FAVOURITES"}/></Link> 
+               <Link className='link-text' to="buy_credits"><BlackButton  text={"BUY CREDITS"} /></Link> 
             </div>
             <div className="user-feature-row">
-               <Link style={{textDecoration:"none"}} to="/shop" ><BlackButton  text={"ACCOUNTS"}/></Link> 
-               <Link style={{textDecoration:"none"}} to="/shop"><BlackButton  text={"PG SHARP"} /></Link> 
+               <Link className='link-text' to="/shop" ><BlackButton  text={"ACCOUNTS"}/></Link> 
+               <Link className='link-text' to="/shop"><BlackButton  text={"PG SHARP"} /></Link> 
             </div>
         </div>
     </div>

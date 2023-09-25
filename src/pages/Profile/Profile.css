@@ -3,6 +3,7 @@
     height: 100%;
     display: flex;
     background-color: var(--bg-color-type2);
+    min-height: 76.5vh;
 }
 .profile-left{
     width: 28%;
@@ -15,7 +16,7 @@
 @media screen and (max-width:868px) {
     .profile-wrapper{
         flex-direction: column;
-        /* height: 100%; */
+        min-height: 100vh;
     }
     .profile-left{
         width: auto;
@@ -29,6 +30,6 @@
 @media screen and (max-width:600px) {
     .profile-wrapper{
         padding: 1rem;
-        /* height: 100vh; */
+        min-height: 100vh;
     }
 }

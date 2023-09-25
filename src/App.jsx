@@ -7,6 +7,8 @@ import Accounts from './pages/Accounts/Accounts';
 import PGSharp from './pages/PGSharp/PGSharp';
 import CardDetail from './pages/CardDetail/CardDetail';
 import Profile from './pages/Profile/Profile';
+import Favourites from './components/Favourites/Favourites';
+import BuyCredits from './pages/BuyCredits/BuyCredits';
 
 function App() {
   return (
@@ -21,7 +23,10 @@ function App() {
           </Route>
           <Route path='shop/accounts/:id' element={<CardDetail/>}/>
           <Route path='contactUs' element={<ContactUs/>}/>
-          <Route path='profile' element={<Profile/>}/>
+          <Route path='profile/' element={<Profile/>}>
+            <Route index element={<Favourites/>}/>
+            <Route path='buy_credits' element={<BuyCredits/>}/>
+          </Route>
         </Route>
       </Routes>
     </Router>

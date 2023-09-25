@@ -62,6 +62,9 @@
 .user-active-style{
     border-bottom: solid 4px #FF3647;
 }
+.link-text{
+    text-decoration: none;
+}
 
 @media screen and (max-width:868px) {
     .user-detail{
