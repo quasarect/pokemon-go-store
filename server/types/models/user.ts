@@ -5,7 +5,7 @@ export interface IUser {
 	password?: string;
 	credits: number;
 	profilePhoto: string;
-	oauthCredentials: OauthCredentials;
+	oauthCredentials?: OauthCredentials;
 }
 
 export enum AuthTypes {
@@ -14,7 +14,7 @@ export enum AuthTypes {
 	password = 'password',
 }
 
-interface OauthCredentials {
+export interface OauthCredentials {
 	accessToken: string;
 	refreshToken: string;
 }

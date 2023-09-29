@@ -30,8 +30,8 @@ export function isAuth(
  * @param designation designation of the user as in teacher or student (watch casing)
  * @returns token valid for 7 days
  */
-export function generateToken(id: string, email: string, type: string): string {
-	const user = { id, type, email };
+export function generateToken(id: string, email: string): string {
+	const user = { id, email };
 	const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '7d' });
 	return token;
 }
