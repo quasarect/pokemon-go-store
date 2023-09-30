@@ -28,9 +28,12 @@ const storage = multer.diskStorage({
 		const ext = path.extname(file.originalname);
 		const filename = `${v4()}-${req.user?.id}${ext}`;
 		if (!req.body.files) {
-			req.body.files = [];
+			req.body.files = {};
 		}
-		req.body.files.push(filename);
+		req.body.files = {
+			...req.body.files,
+			[file.fieldname]: filename,
+		};
 		cb(null, filename);
 	},
 });

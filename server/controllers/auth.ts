@@ -6,6 +6,8 @@ import userModel from '../models/user';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../middlewares/auth';
 import { AuthTypes } from '../types/models/user';
+
+
 export const login: RequestHandler = async (req, res, next) => {
 	try {
 		const { email, password } = req.body;

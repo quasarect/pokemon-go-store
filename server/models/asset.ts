@@ -3,11 +3,10 @@ import { AssetTypes, IAsset } from '../types/models/asset';
 
 const assetSchema = new Schema<IAsset>(
 	{
-		media: [
-			{
-				type: String,
-			},
-		],
+		media: {
+			type: Object,
+		},
+
 		assetType: {
 			type: String,
 			enum: AssetTypes,
@@ -27,6 +26,10 @@ const assetSchema = new Schema<IAsset>(
 		soldTo: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'user',
+		},
+		transaction: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'transaction',
 		},
 	},
 	{ timestamps: true },

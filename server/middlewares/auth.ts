@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { IError } from '../types/IError';
 import { IRequest } from '../types/IRequest';
+import { Admins } from '../types/Admins';
 
 export function isAuth(
 	req: IRequest,
@@ -18,10 +19,23 @@ export function isAuth(
 			email: string;
 			type: string;
 		};
+
 		req.user = decoded;
 		next();
 	} catch (e) {
 		throw new IError('Invalid token', 401);
+	}
+}
+
+export function isAdmin(req: IRequest, res: Response, next: NextFunction) {
+	try {
+		if (Object.values(Admins).includes(req.user?.email as Admins)) {
+			console.log('Admin');
+			next();
+		}
+		throw new IError('Not admin', 401);
+	} catch (error) {
+		next(error);
 	}
 }
 /**

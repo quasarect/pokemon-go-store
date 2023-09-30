@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose';
+
 export interface IUser {
 	name: string;
 	email: string;
@@ -6,6 +8,7 @@ export interface IUser {
 	credits: number;
 	profilePhoto: string;
 	oauthCredentials?: OauthCredentials;
+	favourites: Array<ObjectId>;
 }
 
 export enum AuthTypes {

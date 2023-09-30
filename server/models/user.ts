@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import { AuthTypes, IUser, OauthCredentials } from '../types/models/user';
 
 const oauthCredentials = new Schema<OauthCredentials>(
@@ -36,6 +36,12 @@ const userSchema = new Schema<IUser>(
 			type: Number,
 			default: 0,
 		},
+		favourites: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'asset',
+			},
+		],
 	},
 	{ timestamps: true },
 );
