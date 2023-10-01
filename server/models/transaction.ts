@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import {
 	ITransactions,
 	PaymentMethods,
@@ -19,6 +19,15 @@ const transactionSchema = new Schema<ITransactions>({
 		type: String,
 		enum: TransactionState,
 		required: true,
+	},
+	from: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'user',
+		required: true,
+	},
+	razorpayId: {
+		type: String,
+		unique: true,
 	},
 });
 
