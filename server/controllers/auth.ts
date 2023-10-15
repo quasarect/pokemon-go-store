@@ -7,7 +7,6 @@ import bcrypt from 'bcrypt';
 import { generateToken } from '../middlewares/auth';
 import { AuthTypes } from '../types/models/user';
 
-
 export const login: RequestHandler = async (req, res, next) => {
 	try {
 		const { email, password } = req.body;
@@ -40,12 +39,10 @@ export const signup: RequestHandler = async (req, res, next) => {
 			authType: AuthTypes.password,
 		});
 		await user.save();
-		res
-			.status(200)
-			.json({
-				message: 'Signup successful',
-				token: generateToken(user._id.toString(), email),
-			});
+		res.status(200).json({
+			message: 'Signup successful',
+			token: generateToken(user._id.toString(), email),
+		});
 	} catch (error) {
 		next(error);
 	}
@@ -77,20 +74,24 @@ export const googleLogin: RequestHandler = async (req, res, next) => {
 		const email = userInfo.data.emailAddresses.find(
 			(email: any) => email.metadata.primary === true,
 		)?.value;
-		const user = new userModel({
-			name,
-			email,
-			profilePhoto,
-			authType: AuthTypes.google,
-			oauthCredentials: {
-				accessToken: access_token,
-				refreshToken: refresh_token,
-			},
-		});
-		await user.save();
+		let searchUser = await userModel.findOne({ email });
+		if (!searchUser) {
+			const user = new userModel({
+				name,
+				email,
+				profilePhoto,
+				authType: AuthTypes.google,
+				oauthCredentials: {
+					accessToken: access_token,
+					refreshToken: refresh_token,
+				},
+			});
+			await user.save();
+			searchUser = user;
+		}
 		res.status(200).json({
 			message: 'Login successful',
-			token: generateToken(user._id.toString(), email),
+			token: generateToken(searchUser._id.toString(), email),
 		});
 	} catch (error) {
 		next(error);
