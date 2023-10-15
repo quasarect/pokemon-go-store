@@ -9,6 +9,8 @@ import CardDetail from './pages/CardDetail/CardDetail';
 import Profile from './pages/Profile/Profile';
 import Favourites from './components/Favourites/Favourites';
 import BuyCredits from './pages/BuyCredits/BuyCredits';
+import Login from './pages/Login/Login';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route index element={<Favourites/>}/>
             <Route path='buy_credits' element={<BuyCredits/>}/>
           </Route>
+          <Route path='login' element={<Login/>}/>
+          <Route path='callback/google' element= {<LoadingSpinner/>}/>
         </Route>
       </Routes>
     </Router>
