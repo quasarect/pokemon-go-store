@@ -12,7 +12,12 @@ export const createAsset: RequestHandler = async (req, res, next) => {
 		if (!assetType && !price) {
 			throw new IError('Price and type is required', 400);
 		}
-		const asset = new assetModel({ media: files, assetType, price, info });
+		const asset = new assetModel({
+			media: files,
+			assetType,
+			price,
+			info: JSON.parse(info),
+		});
 		await asset.save();
 		res.status(200).json({ message: 'Asset created' });
 	} catch (error) {
@@ -71,7 +76,9 @@ export const getAssetsByType: RequestHandler = async (req, res, next) => {
 export const queryAssets: RequestHandler = async (req, res, next) => {
 	try {
 		const { assetType, query, price, priceOperator } = req.body;
-
+		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
+			throw new IError('AssetType not valid', 400);
+		}
 		const queryObject: any = { available: true };
 
 		if (assetType) {
@@ -102,7 +109,8 @@ export const queryAssets: RequestHandler = async (req, res, next) => {
 
 export const soldAssets: RequestHandler = async (req, res, next) => {
 	try {
-		const assets = await assetModel.find({ soldTo: { $ne: null } });
+		const { assetType } = req.params;
+		const assets = await assetModel.find({ soldTo: { $ne: null }, assetType });
 
 		if (!assets || assets.length === 0) {
 			return res.status(404).json({ message: 'No sold assets found.' });
@@ -146,6 +154,21 @@ export const removeFromFavourite: RequestHandler = async (
 		}
 		await userModel.findByIdAndUpdate(userId, {
 			$pull: { favourites: assetId },
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getGlobalSearch: RequestHandler = async (req, res, next) => {
+	try {
+		const { assetType, text } = req.params;
+		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
+			throw new IError('AssetTyoe not valid', 400);
+		}
+		await assetModel.find({
+			assetType,
+			$or: [{ price: { $eq: parseInt(text) } }],
 		});
 	} catch (error) {
 		next(error);

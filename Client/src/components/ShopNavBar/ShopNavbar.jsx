@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import SearchBar from '../SearchBar/SearchBar';
 import BlackButton from '../BlackButton/BlackButton';
 import { Link, useLocation } from 'react-router-dom';
-import './ShopNavBar.css'
+import './ShopNavbar.css'
 import {ScreenWidthUpdater} from '../../utils/ScreenWidthUpdater';
 
 const ShopNavbar = () => {

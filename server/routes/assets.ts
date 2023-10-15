@@ -13,18 +13,18 @@ import { fileUpload } from '../middlewares/file-upload';
 
 const assetRouter = Router();
 
-assetRouter.post('/create', isAuth, isAdmin, fileUpload, createAsset);
+assetRouter.post('/create', fileUpload, createAsset);
 
 assetRouter.delete('/', isAuth, isAdmin, deleteAsset);
 
 assetRouter.patch('/', isAuth, isAdmin, fileUpload, updateAssest);
 
-assetRouter.get('/:assetId', isAuth, getAssetById);
+assetRouter.get('/:assetId/id', isAuth, getAssetById);
 
-assetRouter.get('/:assetType', isAuth, getAssetsByType);
+assetRouter.get('/:assetType/all', isAuth, getAssetsByType);
 
-assetRouter.get('/sold', isAuth, isAdmin, soldAssets);
+assetRouter.get('/sold/:assetType', isAuth, isAdmin, soldAssets);
 
-assetRouter.get('/query', isAuth, queryAssets);
+assetRouter.post('/query', isAuth, queryAssets);
 
 export default assetRouter;
