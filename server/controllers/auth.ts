@@ -6,6 +6,7 @@ import userModel from '../models/user';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../middlewares/auth';
 import { AuthTypes } from '../types/models/user';
+import { checkAdmin } from '../middlewares/adminCheck';
 
 export const login: RequestHandler = async (req, res, next) => {
 	try {
@@ -23,6 +24,7 @@ export const login: RequestHandler = async (req, res, next) => {
 		res.status(200).json({
 			message: 'Login successful',
 			token: generateToken(user._id.toString(), user.email),
+			isAdmin: await checkAdmin(user.email),
 		});
 	} catch (error) {
 		next(error);
@@ -42,8 +44,12 @@ export const signup: RequestHandler = async (req, res, next) => {
 		res.status(200).json({
 			message: 'Signup successful',
 			token: generateToken(user._id.toString(), email),
+			isAdmin: checkAdmin(user.email),
 		});
-	} catch (error) {
+	} catch (error: any) {
+		if (error.code === 11000) {
+			next(new IError('Email already exists', 400));
+		}
 		next(error);
 	}
 };
@@ -92,6 +98,7 @@ export const googleLogin: RequestHandler = async (req, res, next) => {
 		res.status(200).json({
 			message: 'Login successful',
 			token: generateToken(searchUser._id.toString(), email),
+			isAdmin: checkAdmin(searchUser.email),
 		});
 	} catch (error) {
 		next(error);

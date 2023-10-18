@@ -19,12 +19,12 @@ assetRouter.delete('/', isAuth, isAdmin, deleteAsset);
 
 assetRouter.patch('/', isAuth, isAdmin, fileUpload, updateAssest);
 
-assetRouter.get('/:assetId/id', isAuth, getAssetById);
-
-assetRouter.get('/:assetType/all', isAuth, getAssetsByType);
-
 assetRouter.get('/sold/:assetType', isAuth, isAdmin, soldAssets);
 
-assetRouter.post('/query', isAuth, queryAssets);
+assetRouter.get('/:assetId/id', getAssetById);
+
+assetRouter.get('/:assetType/all', getAssetsByType);
+
+assetRouter.post('/query', queryAssets);
 
 export default assetRouter;
