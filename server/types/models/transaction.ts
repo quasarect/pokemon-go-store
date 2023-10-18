@@ -6,11 +6,11 @@ export interface ITransactions {
 	state: TransactionState;
 	from: ObjectId;
 	razorpayId: string;
+	manualTransaction: ManualTransaction;
 }
 
 export enum PaymentMethods {
 	razorpay = 'razorpay',
-	upi = 'upi',
 	manual = 'manual',
 }
 
@@ -18,4 +18,9 @@ export enum TransactionState {
 	inProgress = 'inProgress',
 	completed = 'completed',
 	cancelled = 'cancelled',
+}
+
+export interface ManualTransaction {
+	approved: boolean;
+	approvalTime: Date;
 }

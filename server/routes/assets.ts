@@ -10,6 +10,7 @@ import {
 	updateAssest,
 } from '../controllers/asset';
 import { fileUpload } from '../middlewares/file-upload';
+import favouriteRouter from './favourite';
 
 const assetRouter = Router();
 
@@ -26,5 +27,7 @@ assetRouter.get('/:assetId/id', getAssetById);
 assetRouter.get('/:assetType/all', getAssetsByType);
 
 assetRouter.post('/query', queryAssets);
+
+assetRouter.use('/favourite', favouriteRouter);
 
 export default assetRouter;

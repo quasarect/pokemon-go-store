@@ -2,9 +2,6 @@ import { RequestHandler } from 'express';
 import { IError } from '../types/IError';
 import assetModel from '../models/asset';
 import { AssetTypes } from '../types/models/asset';
-import mongoose from 'mongoose';
-import userModel from '../models/user';
-import { IRequest } from '../types/IRequest';
 
 export const createAsset: RequestHandler = async (req, res, next) => {
 	try {
@@ -117,44 +114,6 @@ export const soldAssets: RequestHandler = async (req, res, next) => {
 		}
 
 		res.status(200).json(assets);
-	} catch (error) {
-		next(error);
-	}
-};
-
-export const addToFavourite: RequestHandler = async (
-	req: IRequest,
-	res,
-	next,
-) => {
-	try {
-		const { assetId } = req.params;
-		const userId = req.user?.id;
-		if (!mongoose.Types.ObjectId.isValid(assetId)) {
-			throw new IError('Invalid AssetId', 400);
-		}
-		await userModel.findByIdAndUpdate(userId, {
-			$push: { favourites: assetId },
-		});
-	} catch (error) {
-		next(error);
-	}
-};
-
-export const removeFromFavourite: RequestHandler = async (
-	req: IRequest,
-	res,
-	next,
-) => {
-	try {
-		const { assetId } = req.params;
-		const userId = req.user?.id;
-		if (!mongoose.Types.ObjectId.isValid(assetId)) {
-			throw new IError('Invalid AssetId', 400);
-		}
-		await userModel.findByIdAndUpdate(userId, {
-			$pull: { favourites: assetId },
-		});
 	} catch (error) {
 		next(error);
 	}

@@ -17,6 +17,9 @@ export const order: RequestHandler = async (req: IRequest, res, next) => {
 			throw new IError('amount is required', 400);
 		}
 		const userId = req.user?.id;
+		if (!userId) {
+			throw new IError('User not found', 404);
+		}
 		const paymentInstance = new Razorpay({
 			key_id: razorpayKeyId,
 			key_secret: razorpayKeySecret,
@@ -33,6 +36,10 @@ export const order: RequestHandler = async (req: IRequest, res, next) => {
 				amount: 5,
 				currency: 'INR',
 				receipt: transaction._id.toString(),
+				notes: {
+					userId: userId?.toString(),
+					time: new Date().toString(),
+				},
 			},
 			async (error, order) => {
 				if (error) {
@@ -59,9 +66,12 @@ export const verify: RequestHandler = async (req, res, next) => {
 			.update(sign.toString())
 			.digest('hex');
 		if (razorpay_signature === expectedSign) {
-			const transaction = await transactionModel.findOne({
-				razorpayId: razorpay_order_id,
-			});
+			const transaction = await transactionModel.findOneAndUpdate(
+				{
+					razorpayId: razorpay_order_id,
+				},
+				{ $set: { state: TransactionState.completed } },
+			);
 			if (!transaction) {
 				throw new IError('No  order found', 404);
 			}
@@ -78,6 +88,45 @@ export const verify: RequestHandler = async (req, res, next) => {
 		} else {
 			throw new IError('Invalid Signature', 500);
 		}
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const razorpayTransactionCancelled: RequestHandler = async (
+	req,
+	res,
+	next,
+) => {
+	try {
+		const { razorpay_order_id } = req.body;
+		const transaction = await transactionModel.findOneAndUpdate(
+			{
+				razorpayId: razorpay_order_id,
+			},
+			{ $set: { state: TransactionState.cancelled } },
+		);
+		if (!transaction) {
+			throw new IError('No  order found', 404);
+		}
+		res.status(200).json({ message: 'Order cancelled' });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const manualTransaction: RequestHandler = async (req, res, next) => {
+	try {
+		const { amount } = req.body;
+		const transaction = new transactionModel({
+			amount,
+			method: PaymentMethods.manual,
+			state: TransactionState.inProgress,
+		});
+		await transaction.save();
+		res
+			.status(201)
+			.json({ message: 'Transaction created', id: transaction._id.toString() });
 	} catch (error) {
 		next(error);
 	}
