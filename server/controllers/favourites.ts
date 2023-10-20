@@ -50,7 +50,8 @@ export const getFavourites: RequestHandler = async (
 	try {
 		const userId = req.user?.id;
 		const favourites = await userModel.findById(userId).populate('favourites');
-		res.status(200).json({ favourites });
+		
+		res.status(200).json({ favourites:favourites?.favourites });
 	} catch (error) {
 		next(error);
 	}

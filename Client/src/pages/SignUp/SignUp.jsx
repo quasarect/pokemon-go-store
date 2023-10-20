@@ -29,9 +29,10 @@ const SignUp = () => {
     }
 
     const handleSubmit = async() =>{
-
+        console.log("1")
         const errors = SignUpValidation(signUpCred);
         if (Object.keys(errors).length === 0) {
+            console.log("2")
         const options = {
             method: "POST",
             headers: {
@@ -42,6 +43,7 @@ const SignUp = () => {
 
           try{
              const res =  await fetch(SignUpApi, options).then(res => res.json()).then(data => data)
+             console.log("res",res)
              if(res.token){
                 localStorage.setItem("token", res.token)
                 navigate('/')
