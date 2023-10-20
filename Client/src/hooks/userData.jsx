@@ -4,6 +4,7 @@ function userData(url, method) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const [token, setToken] = useState(localStorage.getItem('token'))
 
   const token  = localStorage.getItem('token')
 
@@ -19,11 +20,13 @@ function userData(url, method) {
   // let url = "http://localhost:5000/auth/google"
 
   useEffect(() => {
+    // setToken(token);
     setLoading(true);
     if(token){
         fetch(url, options).then(res => res.json())
           .then((data) => {
               setData(data.user);
+              // console.log("user",data)
           })
           .catch((err) => {
             setError(err);

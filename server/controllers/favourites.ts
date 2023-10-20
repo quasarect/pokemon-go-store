@@ -13,9 +13,6 @@ export const addToFavourite: RequestHandler = async (
 	try {
 		const { assetId } = req.query;
 		const userId = req.user?.id;
-		if (!mongoose.Types.ObjectId.isValid(assetId as string)) {
-			throw new IError('Invalid AssetId', 400);
-		}
 		await userModel.findByIdAndUpdate(userId, {
 			$push: { favourites: assetId },
 		});

@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const {userDetails,loading,error,refetch} = UserDetails();
-  console.log("context",userDetails)
+  // console.log("context",userDetails)
 
   return (
     <UserContext.Provider value={{

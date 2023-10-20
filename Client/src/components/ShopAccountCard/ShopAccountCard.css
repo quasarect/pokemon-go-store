@@ -12,6 +12,7 @@
 .sa-card-top{
     width: 98%;
     height: 178px;
+    display: flex;
 }
 .sa-card-top img{
     width: 100%;
@@ -50,9 +51,16 @@
 .card-price .red-btn{
     /* font-size: 16px; */
     font-size: 1.2vw;
-    margin: 1rem 0rem;
+    margin: 0.5rem 0rem;
     padding: 7% 9%;
     margin-bottom: 0rem;
+}
+
+.fav-btn{
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: #1BA6C9;
 }
 
 @media screen and (max-width:868px){

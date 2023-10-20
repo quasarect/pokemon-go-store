@@ -12,10 +12,10 @@ export const UserDetails = () => {
 
     const { data, loading, error, refetch } = userData(userDetailUrl,"GET");
     // console.log("userDetails",data)
-    // useEffect(() => {
-    //     SetUserDetails(data);
-    //     console.log("userder",userDetails)
-    // }, [data])
+    useEffect(() => {
+        SetUserDetails(data);
+        // console.log("userder",userDetails)
+    }, [data])
     
 
     return {userDetails,loading,error,refetch};

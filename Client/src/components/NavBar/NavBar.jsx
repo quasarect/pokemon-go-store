@@ -8,7 +8,6 @@ import { Link, useLocation } from 'react-router-dom';
 import ProfilePic from '../ProfilePic/ProfilePic';
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.svg'
 import { UserContext } from '../../context';
-// import Login from '../../pages/Login/Login';
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +16,7 @@ const NavBar = () => {
     // const [loginbtn, setLoginbtn] = useState(false);
 
     const token = localStorage.getItem("token")
-    
+
     useEffect(() => {
         location
     }, [location])
