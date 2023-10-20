@@ -1,7 +1,132 @@
-.login{
+.login-wrapper{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 91vh;
+    background-color: var(--bg-color-type2);
+}
+.login{
+    width: 432px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    background-color: var(--bg-color-type2);
+
+}
+.login-signUp-nav{
+    font-size: 24px;
+    margin: 0rem 0rem 1.5rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.link-signUp-style{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0rem;
+    background-color: var(--bg-color-type1);
+    /* border-radius: 10px 10px 0px 0px; */
+    cursor: pointer;
+    color: var(--text-color1);
+}
+
+.active-sec{
+    background-color: var(--bg-color-type2);
+}
+
+.link-signUp-style{
+    text-decoration: none;
+    /* color: #000; */
+}
+.login-body{
+    padding: 1rem 3rem 3rem 3rem;
+    width: 80%;
+}
+.login-ep, .signUp-ep{
+    width: 100%;
+    display: flex;
     flex-direction: column;
 }
+
+.login-field, .signUp-field{
+    /* width: 100%; */
+    outline: none;
+    padding: 5px 8px;
+    font-size: 18px;
+    border-radius: 6px;
+    border: 1px solid grey;
+    margin: 0.7rem 0rem;
+    background-color: var(--bg-color-type1);
+    color: var(--text-color1);
+}
+
+.login-btn, .signUp-btn{
+    width: 100%;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem;
+    font-size: 20px;
+    color: #fff;
+    background-color: #22A699;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+.signUp-link{
+    text-align: right;
+    width: 100%;
+    margin: 0px;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--text-color1);
+}
+.signUp-link-1{
+    color: #525FE1;
+    cursor: pointer;
+    text-decoration: none;
+}
+.google-fb-btn{
+    width: 100%;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem;
+    font-size: 18px;
+    /* color: #fff; */
+    /* background-color: #525FE1; */
+    border-radius: 6px;
+    /* border : 2px solid #525FE1; */
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fb-btn-clr{
+    background-color: #3b5998;
+    color: #fff;
+    /* display: flex;
+    align-items: center; */
+    text-align: center;
+}
+
+.fb-icon{
+    width: 24px;
+    border-radius: 100%;
+    margin-right: 2rem;
+}
+
+.loginError{
+    font-size: 12px;
+    color: red;
+}
+
+

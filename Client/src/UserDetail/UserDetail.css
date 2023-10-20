@@ -66,6 +66,12 @@
     text-decoration: none;
 }
 
+.logout-btn{
+    cursor: pointer;
+    text-align: center;
+    color: red;
+}
+
 @media screen and (max-width:868px) {
     .user-detail{
         flex-direction: unset;
@@ -97,5 +103,14 @@
     }
     .user-feature-row .btn-wrapper .black-btn-name{
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width:868px) {
+    .user-name{
+        font-size: 16px;
+    }
+    .user-email{
+     font-size: 10px;
     }
 }

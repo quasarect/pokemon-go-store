@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './NavBar.css';
 import logo from '../../assets/icons/logo.svg'
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
@@ -7,14 +7,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link, useLocation } from 'react-router-dom';
 import ProfilePic from '../ProfilePic/ProfilePic';
 import DefaultProfileImage from '../../assets/images/defaultProfileImage.svg'
+import { UserContext } from '../../context';
 // import Login from '../../pages/Login/Login';
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
-
+    const detail =  useContext(UserContext)
     // const [loginbtn, setLoginbtn] = useState(false);
 
+    const token = localStorage.getItem("token")
+    
     useEffect(() => {
         location
     }, [location])
@@ -23,6 +26,11 @@ const NavBar = () => {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+
+    useEffect(() => {
+        detail.userDetail.loading
+    }, [token])
+    
 
     // darkMode function
     const [theme, setTheme] = useState("light-theme");
@@ -36,9 +44,6 @@ const NavBar = () => {
     
     return (
         <>
-            {/* {  
-               !loginbtn ?
-               <> */}
                 <nav className="navbar navbar-text-align">
                     <div className="navbar-left navbar-text-align">
                         <Link className="nav-el" to="/"><img src={logo} alt="logo.svg" className="company-logo" /></Link>
@@ -53,12 +58,12 @@ const NavBar = () => {
                     </div>
                     <div className="navbar-right navbar-text-align">
                         {
-                            (location.pathname === "/profile") ?
-                                <div className={location.pathname == "/profile" ? "nav-el nav-elem-border" : "nav-el"}><ProfilePic profileImage={DefaultProfileImage} /></div>
+                            ( !detail.userDetail.loading && token) ?
+                                <Link to="/profile" className="nav-el nav-elem-border" ><ProfilePic profileImage={detail.userDetail.userDetails? detail.userDetail.userDetails.profilePhoto:DefaultProfileImage} /></Link>
                                 :
                                 // profile page redirect
                                 // to="/profile"
-                                <Link to="/login"  className={location.pathname == "/" ? "nav-el nav-elem-border" : "nav-el"}><div className="login-signup-btn" > LOGIN / SIGNUP</div></Link>
+                                <Link to="/login"  className={location.pathname == "/" ? "nav-el nav-elem-border" : "nav-el"}><div className="login-signup-btn" > LOGIN / SIGNUP</div></Link> 
                         }
                         <div className="dark-mode-icon" onClick={toggleTheme}><LightbulbOutlinedIcon /></div>
                         <div className="menuIcon" onClick={toggleMenu}>
@@ -77,10 +82,6 @@ const NavBar = () => {
                     </div>
                     : <></>
             }
-            {/* </>
-            :
-            <Login/>
-            } */}
         </>
     )
 }

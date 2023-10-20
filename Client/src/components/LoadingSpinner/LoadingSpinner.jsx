@@ -1,9 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const LoadingSpinner = () => {
 	const location = useLocation();
+    const navigate = useNavigate()
     
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
@@ -11,7 +12,7 @@ const LoadingSpinner = () => {
 		const postData = {
 			code: queryParamValue,
 		};
-        console.log("para",queryParamValue)
+        // console.log("para",queryParamValue)
 
         loginApi(queryParamValue);
 	}, [location]);
@@ -31,16 +32,18 @@ const LoadingSpinner = () => {
 
         const res = await fetch(url, options).then(res => res.json()).then(
             data => {
-                // console.log()
-                console.log("response",data)
+                // console.log("response",data)
+                localStorage.setItem("token", data.token)
+                navigate('/')
             }
-        ).catch(err=>{})
 
-        
+        ).catch(err=>{
+            console.log(err)
+        })
     }
 	return (
-		<div className="fixed inset-0 flex items-center justify-center bg-white">
-			<div className="animate-spin rounded-full border-t-4 border-black border-solid h-12 w-12"></div>
+		<div className='progressbar' style={{width:"100%", height:"100vh", display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"var(--bg-color-type1)"}}>
+			<div style={{fontSize:"24px", color:"var(--text-color1)"}}>.....Loading</div>
 		</div>
 	);
 };

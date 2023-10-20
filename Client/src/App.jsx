@@ -30,6 +30,7 @@ function App() {
             <Route path='buy_credits' element={<BuyCredits/>}/>
           </Route>
           <Route path='login' element={<Login/>}/>
+          <Route path='signup' element = {<Login/>} />
           <Route path='callback/google' element= {<LoadingSpinner/>}/>
         </Route>
       </Routes>
