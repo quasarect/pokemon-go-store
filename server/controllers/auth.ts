@@ -18,7 +18,7 @@ export const login: RequestHandler = async (req, res, next) => {
 		if (!user.password) {
 			throw new IError('Different auth type', 400);
 		}
-		if (!(await bcrypt.compare(password, user?.password))) {
+		if (!(await bcrypt.compare(password, user.password))) {
 			throw new IError('Wrong password', 400);
 		}
 		res.status(200).json({
@@ -37,14 +37,14 @@ export const signup: RequestHandler = async (req, res, next) => {
 		const user = new userModel({
 			name,
 			email,
-			password,
+			password: bcrypt.hashSync(password, 10),
 			authType: AuthTypes.password,
 		});
 		await user.save();
 		res.status(200).json({
 			message: 'Signup successful',
 			token: generateToken(user._id.toString(), email),
-			isAdmin: checkAdmin(user.email),
+			isAdmin: await checkAdmin(user.email),
 		});
 	} catch (error: any) {
 		if (error.code === 11000) {
