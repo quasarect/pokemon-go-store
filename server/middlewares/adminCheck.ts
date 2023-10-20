@@ -12,3 +12,4 @@ export const checkAdmin = async (email: string) => {
 		throw new IError('Unknown Error in Admin Check', 500);
 	}
 };
+
