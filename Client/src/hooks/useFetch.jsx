@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const useFetch =(url, method, credential) =>{
+  const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,15 +13,14 @@ export const useFetch =(url, method, credential) =>{
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
-    body: JSON.stringify(credential)
+    // body: JSON.stringify(credential)
   }
 
   useEffect(() => {
     setLoading(true);
     fetch(url, options).then(res => res.json())
       .then((response) => {
-        localStorage.setItem("token", response.token)
-        navigate('/')
+       setData(response)
       })
       .catch((err) => {
         setError(err);
@@ -34,8 +34,7 @@ export const useFetch =(url, method, credential) =>{
     setLoading(true);
     fetch(url, options).then(res => res.json())
       .then((response) => {
-        localStorage.setItem("token", response.token)
-        navigate('/')
+        setData(response)
       })
       .catch((err) => {
         setError(err);
@@ -45,5 +44,5 @@ export const useFetch =(url, method, credential) =>{
       });
   };
 
-  return { loading, error, refetch };
+  return { data, loading, error, refetch };
 }

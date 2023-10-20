@@ -5,10 +5,6 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const {userDetails,loading,error,refetch} = UserDetails();
-  useEffect(() => {
-    userDetails
-  }, [userDetails])
-  
 
   return (
     <UserContext.Provider value={{

@@ -8,6 +8,9 @@ export const authFaceBook = "http://localhost:5000/auth/facebook"
 //Assets
 // export const account = "http://localhost:5000/asset/create"
 // export const account = "http://localhost:5000/asset/create"
+export const assetTypeApi = (assetType) => `http://localhost:5000/asset/${assetType}/all`
+export const assetIdApi = (assetId) =>`http://localhost:5000/asset/${assetId}/id`
+
 
 
 // User

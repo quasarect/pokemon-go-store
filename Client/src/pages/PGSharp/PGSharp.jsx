@@ -1,18 +1,31 @@
 import React from 'react';
 import './PGSharp.css'
 import PGSharpCard from '../../components/PGSharpCard/PGSharpCard';
+import { useFetch } from '../../hooks/useFetch';
+import { assetTypeApi } from '../../context/api';
 
 const PGSharp = () => {
-  const PGCardDetails=[1,2,3,4,5,6];
+  const { data, loading, error, refetch} = useFetch(assetTypeApi("pgsharp"),"GET");
+  // console.log(data)
+
+  if(data === null){
+    return(
+      <div className="pg-sharp-wrapper">
+        ...Loading
+      </div>
+    )
+  }
   return (
     <div className="pg-sharp-wrapper">
       <div className="pg-cards">
         {
-          PGCardDetails.map((id)=>(
-            <div className="pg-card" key={id}><PGSharpCard/></div>
+          data.map((detail)=>(
+            <div className="pg-card" key={detail._id}><PGSharpCard
+            info = {detail.info}
+            price = {detail.price}
+            /></div>
           ))
         }
-      
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import pokemons from "../../assets/images/pokemons.svg"
 import ShopAccountDetail from '../../components/ShopAccountDetail/ShopAccountDetail';
 
 const CardDetail = () => {
+
     const slidesData = [
         {url: pokemons},
         {url: pokemons},
