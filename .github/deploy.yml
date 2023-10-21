@@ -1,0 +1,17 @@
+name: "Backend testing"
+
+on:
+  push:
+
+jobs:
+  compile-tsc:
+    name: Compile typescript
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Path
+        run: pwd
+      - name: List
+        run: ls
+      # - name: Check lint errors
+      #   run: npm run lint
+  

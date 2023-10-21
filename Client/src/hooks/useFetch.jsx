@@ -7,11 +7,12 @@ export const useFetch =(url, method, credential) =>{
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-
+  const token  = localStorage.getItem('token')
   let options = {
     method: method,
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
+      'Authorization': token
     },
     // body: JSON.stringify(credential)
   }

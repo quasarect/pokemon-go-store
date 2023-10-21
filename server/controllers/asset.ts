@@ -2,6 +2,12 @@ import { RequestHandler } from 'express';
 import { IError } from '../types/IError';
 import assetModel from '../models/asset';
 import { AssetTypes } from '../types/models/asset';
+import { IRequest } from '../types/IRequest';
+import userModel from '../models/user';
+
+// function categorizedFavourites(assets: Array<IAsset>) {
+
+// }
 
 export const createAsset: RequestHandler = async (req, res, next) => {
 	try {
@@ -57,13 +63,33 @@ export const getAssetById: RequestHandler = async (req, res, next) => {
 	}
 };
 
-export const getAssetsByType: RequestHandler = async (req, res, next) => {
+export const getAssetsByType: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
 	try {
 		const { assetType } = req.params;
+		const userId = req.user?.id;
 		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
 			throw new IError('AssetTyoe not valid', 400);
 		}
 		const assets = await assetModel.find({ assetType, available: true });
+		if (userId) {
+			const userFavourites = await userModel
+				.findById(userId)
+				.populate('favourites');
+			if (userFavourites) {
+				assets.forEach((asset) => {
+					const isFav = userFavourites.favourites.some((favorite) =>
+						//@ts-ignore
+						favorite._id.equals(asset._id.toString()),
+					);
+					// Add the isFav attribute to the asset object
+					asset.isFav = isFav;
+				});
+			}
+		}
 		res.status(200).json(assets);
 	} catch (error) {
 		next(error);

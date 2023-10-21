@@ -6,7 +6,7 @@ import { assetTypeApi } from '../../context/api';
 
 const Accounts = () => {
   const { data, loading, error, refetch } = useFetch(assetTypeApi('account'), "GET");
-  // console.log(data)
+  console.log(data)
 
   if (data === null) {
     return (

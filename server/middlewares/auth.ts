@@ -1,4 +1,4 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, RequestHandler, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { IError } from '../types/IError';
 import { IRequest } from '../types/IRequest';
@@ -49,3 +49,27 @@ export function generateToken(id: string, email: string): string {
 	const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '7d' });
 	return token;
 }
+
+export const getUserDetails: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
+	const token = req.header('Authorization')?.replace('Bearer ', '');
+	if (!token) {
+		return next();
+	}
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
+			id: string;
+			email: string;
+			type: string;
+		};
+
+		req.user = decoded;
+	} catch (e) {
+		//Intentional
+	} finally {
+		next();
+	}
+};

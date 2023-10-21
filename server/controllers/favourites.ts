@@ -73,9 +73,6 @@ export const getFavourites: RequestHandler = async (
 		) {
 			//Do nothing
 		}
-		console.log(accountFavourites);
-		console.log("While passed");
-		console.log(pgsharpFavourites);
 		res
 			.status(200)
 			.json({ accounts: accountFavourites, pgsharp: pgsharpFavourites });

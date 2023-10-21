@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { isAdmin, isAuth } from '../middlewares/auth';
+import { getUserDetails, isAdmin, isAuth } from '../middlewares/auth';
 import {
 	createAsset,
 	deleteAsset,
@@ -22,11 +22,11 @@ assetRouter.patch('/', isAuth, isAdmin, fileUpload, updateAssest);
 
 assetRouter.get('/sold/:assetType', isAuth, isAdmin, soldAssets);
 
-assetRouter.get('/:assetId/id', getAssetById);
+assetRouter.get('/:assetId/id', getUserDetails, getAssetById);
 
-assetRouter.get('/:assetType/all', getAssetsByType);
+assetRouter.get('/:assetType/all', getUserDetails, getAssetsByType);
 
-assetRouter.post('/query', queryAssets);
+assetRouter.post('/query', getUserDetails, queryAssets);
 
 assetRouter.use('/favourite', favouriteRouter);
 

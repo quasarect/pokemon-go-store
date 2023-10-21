@@ -8,6 +8,7 @@ export interface IAsset {
 	available: boolean;
 	soldTo: ObjectId;
 	transaction: ObjectId;
+	isFav: boolean;
 }
 
 export enum AssetTypes {
