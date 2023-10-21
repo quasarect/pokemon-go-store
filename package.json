@@ -1,0 +1,12 @@
+{
+  "name": "pokemon-go-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nginx": "sudo ln -s ./server.conf /etc/nginx/sites-enabled/"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -6,7 +6,7 @@ on:
 jobs:
   compile-tsc:
     name: Compile typescript
-    runs-on: ubuntu-latest    
+    runs-on: self-hosted    
     steps:
       - name: Path
         run: pwd
