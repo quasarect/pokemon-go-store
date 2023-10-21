@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Chnage direcoty
         run :
-          cd ../../../../
+          cd ../../../../pokemon-go-store
       - name: List
         run : ls
       - name: Path
