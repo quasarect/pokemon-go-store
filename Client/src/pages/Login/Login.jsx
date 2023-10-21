@@ -59,7 +59,7 @@ const Login = () => {
     const googleLogin = () => {
         const clientId =
             '949132968973-5t814qo0o17il2v10shj0m5rvrgirv23.apps.googleusercontent.com';
-        const redirectUri = 'http://localhost:5173/callback/google';
+        const redirectUri = 'https://pokemon-go-store.netlify.app/callback/google';
         const scopes = [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email',
