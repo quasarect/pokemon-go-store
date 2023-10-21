@@ -8,6 +8,11 @@ jobs:
     name: Compile typescript
     runs-on: self-hosted    
     steps:
+      - name: Chnage direcoty
+        run :
+          cd ../../../../
+      - name: List
+        run : ls
       - name: Path
         run: pwd
       - name: List
