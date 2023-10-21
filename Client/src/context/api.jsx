@@ -18,6 +18,6 @@ export const userDetailUrl = "http://localhost:5000/user/details"
 
 
 // Favourite
-export const addFavApi = (favId) => `http://localhost:5000/asset/favourite/remove?${favId}`
-export const removeFavApi = (favId) => `http://localhost:5000/asset/favourite/add?${favId}`
+export const addFavApi = (favId) => `http://localhost:5000/asset/favourite/add?assetId=${favId}`
+export const removeFavApi = (favId) => `http://localhost:5000/asset/favourite/remove?assetId=${favId}`
 export const allFavApi =  "http://localhost:5000/asset/favourite"

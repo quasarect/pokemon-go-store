@@ -26,7 +26,7 @@ function userData(url, method) {
         fetch(url, options).then(res => res.json())
           .then((data) => {
               setData(data.user);
-              // console.log("user",data)
+              console.log("user",data)
           })
           .catch((err) => {
             setError(err);

@@ -25,19 +25,11 @@ const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price}) =
 
     if(!fav){
       //add fav
-        await fetch(addFavApi(id),options).then(res => res.json()).then(
-          (data) => {
-            console.log("fav",data)
-          }
-        ).catch(err => {console.log(err)})
+        await fetch(addFavApi(id),options).then(res => res.json()).catch(err => {console.log(err)})
      
       }else{
       //remove fav
-      await fetch(removeFavApi(id),options).then(res => res.json()).then(
-        (data) => {
-          console.log("fav",data)
-        }
-      ).catch(err => {console.log(err)})
+      await fetch(removeFavApi(id),options).then(res => res.json()).catch(err => {console.log(err)})
     }
     setNotify(false)
     setFav(!fav)

@@ -12,8 +12,7 @@ const Favourites = () => {
         pgsharp:false
     })
     const FavouriteData = [1,2,3,4,5,6]
-    // const { data, loading, error, refetch } = userData(allFavApi,"GET")
-    // console.log(data)
+    const { data, loading, error, refetch } =  userData(allFavApi,"GET")
 
     // if(data === null){
     //     return (

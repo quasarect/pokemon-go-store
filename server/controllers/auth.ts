@@ -105,4 +105,9 @@ export const googleLogin: RequestHandler = async (req, res, next) => {
 	}
 };
 
-export const facebookLogin: RequestHandler = (req, res, next) => {};
+export const facebookLogin: RequestHandler = (req, res, next) => {
+	try {
+	} catch (error) {
+		next(error);
+	}
+};
