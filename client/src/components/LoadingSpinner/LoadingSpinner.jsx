@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
 	}, [location]);
 
     const loginApi = async(queryParamValue)=>{
-        const url = "http://23.23.49.32/api/auth/google"
+        const url = "http://localhost:5000/auth/google"
 
         let options = {
             method: 'POST',
