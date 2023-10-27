@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css'
 import SignUp from '../SignUp/SignUp';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LoginApi } from '../../context/api';
+import { LoginApi,CLIENTID,REDIRECTURI } from '../../context/api';
 import { LoginValidation } from '../../utils/UserValidation';
 
 const Login = () => {
@@ -57,9 +57,10 @@ const Login = () => {
     }
 
     const googleLogin = () => {
-        const clientId =
-            '949132968973-5t814qo0o17il2v10shj0m5rvrgirv23.apps.googleusercontent.com';
-        const redirectUri = 'http://localhost:5173/callback/google';
+        const clientId = CLIENTID
+            // '949132968973-5t814qo0o17il2v10shj0m5rvrgirv23.apps.googleusercontent.com';
+        const redirectUri = REDIRECTURI;
+        // 'http://localhost:5173/callback/google';
         const scopes = [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email',

@@ -2,38 +2,10 @@ import RedButton from '../RedButton/RedButton';
 import './ShopAccountCard.css'
 import Pokemons from '../../assets/images/pokemons.svg'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import userData from '../../hooks/userData';
-import { addFavApi,removeFavApi } from '../../context/api';
+import { useAddRemove } from '../../hooks/useAddRemove';
 
-const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price}) => {
-  const [fav, setFav] = useState(false);
-  const [notify, setNotify] = useState(null)
-
-  const token = localStorage.getItem("token");
-
-  const handleToggle = async() =>{
-    
-    let options = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': token
-      },
-      // body: JSON.stringify(credential)
-    }
-
-    if(!fav){
-      //add fav
-        await fetch(addFavApi(id),options).then(res => res.json()).catch(err => {console.log(err)})
-     
-      }else{
-      //remove fav
-      await fetch(removeFavApi(id),options).then(res => res.json()).catch(err => {console.log(err)})
-    }
-    setNotify(false)
-    setFav(!fav)
-  }
+const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,favbool}) => {
+  const {fav,handleToggle} = useAddRemove(id,favbool)
 
   return (
     <div className="shop-account-card">

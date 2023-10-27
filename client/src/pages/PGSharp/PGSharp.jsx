@@ -6,7 +6,7 @@ import { assetTypeApi } from '../../context/api';
 
 const PGSharp = () => {
   const { data, loading, error, refetch} = useFetch(assetTypeApi("pgsharp"),"GET");
-  // console.log(data)
+  // console.log("pgsharp",data)
 
   if(data === null){
     return(
@@ -23,6 +23,7 @@ const PGSharp = () => {
             <div className="pg-card" key={detail._id}><PGSharpCard
             info = {detail.info}
             price = {detail.price}
+            id ={detail._id}
             /></div>
           ))
         }

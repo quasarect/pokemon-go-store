@@ -29,6 +29,21 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.pg-sharp-bottom{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.pg-sharp-bottom .red-btn{
+    margin: 0.5rem 0rem 0.5rem 0rem;
+}
+.pg-sharp-bottom span{
+    color: #1BA6C9;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+}
 @media screen and (max-width:868px){
     .pgSharpCard{
         margin: 1.2vw;
