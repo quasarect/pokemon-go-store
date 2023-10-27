@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css'
 import SignUp from '../SignUp/SignUp';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LoginApi,CLIENTID,REDIRECTURI } from '../../context/api';
+import { LoginApi } from '../../context/api';
 import { LoginValidation } from '../../utils/UserValidation';
 
 const Login = () => {
@@ -30,7 +30,7 @@ const Login = () => {
     const handleSubmit = async() => {
         // console.log(loginCred)
         const errors =  LoginValidation(loginCred)
-        console.log(errors)
+        // console.log(errors)
         if (Object.keys(errors).length === 0) {
             const options = {
                 method: "POST",
@@ -45,7 +45,7 @@ const Login = () => {
                 if (res.token) {
                     localStorage.setItem("token", res.token)
                     navigate('/')
-                } else { console.log("j", res) }
+                } else { console.log("error", res) }
             } catch (err) {
                 console.log(err);
             }
@@ -57,10 +57,9 @@ const Login = () => {
     }
 
     const googleLogin = () => {
-        const clientId = CLIENTID
-            // '949132968973-5t814qo0o17il2v10shj0m5rvrgirv23.apps.googleusercontent.com';
-        const redirectUri = REDIRECTURI;
-        // 'http://localhost:5173/callback/google';
+        const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID
+           
+        const redirectUri = import.meta.env.VITE_REACT_APP_REDIRECT_URI;
         const scopes = [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email',
