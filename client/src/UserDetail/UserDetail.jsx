@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import ProfilePic from '../components/ProfilePic/ProfilePic';
 import DefaultProfileImage from '../assets/images/defaultProfileImage.svg'
 import './UserDetail.css'

@@ -40,7 +40,7 @@ const NavBar = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme])
-    
+
     return (
         <>
                 <nav className="navbar navbar-text-align">

@@ -49,6 +49,14 @@
     font-weight: 400;
 }
 
+.no-card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 8rem 0rem;
+    color: gray;
+}
+
 @media screen and (max-width:1100px) {
     .favourite-title {
         display: none;

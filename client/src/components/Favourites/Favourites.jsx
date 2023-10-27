@@ -11,16 +11,16 @@ const Favourites = () => {
         account:false,
         pgsharp:false
     })
-    const FavouriteData = [1,2,3,4,5,6]
+
     const { data, loading, error, refetch } =  userData(allFavApi,"GET")
 
-    // if(data === null){
-    //     return (
-    //         <div className="favourites">
-    //             ...Loading
-    //         </div>
-    //     )
-    // }
+    if(data === null){
+        return (
+            <div className="favourites">
+                ...Loading
+            </div>
+        )
+    }
 
   return (
     <div className="favourites">
@@ -32,19 +32,24 @@ const Favourites = () => {
                 favType.account ?
                 <>
             {
-                FavouriteData.map((detail)=>(
-                    <div className="card" key={detail.id}>
-                        <ShopAccountCard
-                        // id = {detail._id}
-                        // shiny={detail.info.shiny}
-                        // legendary={detail.info.legendary}
-                        // p_storage={detail.info.p_storage}
-                        // l_storage={detail.info.l_storage}
-                        // level={detail.info.level}
-                        // price = {detail.price}
-                        />
-                    </div>
-                ))
+                (data.accounts.length>0)?
+                <>{
+                    data.accounts.map((detail,id)=>(
+                        <div className="card" key={id}>
+                            <ShopAccountCard
+                            id = {detail._id}
+                            shiny={detail.info.shiny}
+                            legendary={detail.info.legendary}
+                            p_storage={detail.info.p_storage}
+                            l_storage={detail.info.l_storage}
+                            level={detail.info.level}
+                            price = {detail.price}
+                            />
+                        </div>
+                    ))
+
+                }
+                </>:<div className='no-card'>Add Your Favourite Pokemon</div>
             }
                 </>:<></>
             }
@@ -56,19 +61,23 @@ const Favourites = () => {
                 favType.pgsharp ?
                 <>
             {
-                FavouriteData.map((detail)=>(
-                    <div className="card" key={detail.id}>
-                        <ShopAccountCard
-                        // id = {detail._id}
-                        // shiny={detail.info.shiny}
-                        // legendary={detail.info.legendary}
-                        // p_storage={detail.info.p_storage}
-                        // l_storage={detail.info.l_storage}
-                        // level={detail.info.level}
-                        // price = {detail.price}
-                        />
-                    </div>
-                ))
+                data.pgsharp.length>0?
+                <>{
+                    data.pgsharp.map((detail,id)=>(
+                        <div className="card" key={id}>
+                            <ShopAccountCard
+                            id = {detail._id}
+                            shiny={detail.info.shiny}
+                            legendary={detail.info.legendary}
+                            p_storage={detail.info.p_storage}
+                            l_storage={detail.info.l_storage}
+                            level={detail.info.level}
+                            price = {detail.price}
+                            />
+                        </div>
+                    ))
+
+                }</>:<div className='no-card'>Add Your Favourite Pokemon</div>
             }
                 </>:<></>
             }

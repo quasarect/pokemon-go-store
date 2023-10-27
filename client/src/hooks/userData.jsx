@@ -25,8 +25,12 @@ function userData(url, method) {
     if(token){
         fetch(url, options).then(res => res.json())
           .then((data) => {
+            if(data.user){
               setData(data.user);
-              console.log("user",data)
+            }else{
+              setData(data);
+            }
+              // console.log("user",data)
           })
           .catch((err) => {
             setError(err);

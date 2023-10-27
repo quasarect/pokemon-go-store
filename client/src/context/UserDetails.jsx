@@ -14,7 +14,7 @@ export const UserDetails = () => {
     // console.log("userDetails",data)
     useEffect(() => {
         SetUserDetails(data);
-        // console.log("userder",userDetails)
+        // console.log("userdetails",userDetails)
     }, [data])
     
 
