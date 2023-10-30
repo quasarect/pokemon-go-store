@@ -84,18 +84,19 @@ const getAssetsByType = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
             throw new IError_1.IError('AssetTyoe not valid', 400);
         }
         const assets = yield asset_1.default.find({ assetType, available: true });
+        let newAssets = [];
         if (userId) {
             const userFavourites = yield user_1.default
                 .findById(userId)
                 .populate('favourites');
-            if (userFavourites) {
+            if (userFavourites === null || userFavourites === void 0 ? void 0 : userFavourites.favourites) {
                 assets.forEach((asset) => {
                     const isFav = userFavourites.favourites.some((favorite) => favorite._id.equals(asset._id.toString()));
-                    asset.isFav = isFav;
+                    newAssets.push(Object.assign(Object.assign({}, asset._doc), { isFav }));
                 });
             }
         }
-        res.status(200).json(assets);
+        res.status(200).json({ assets: newAssets || assets });
     }
     catch (error) {
         next(error);

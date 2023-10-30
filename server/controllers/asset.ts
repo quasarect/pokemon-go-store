@@ -75,22 +75,25 @@ export const getAssetsByType: RequestHandler = async (
 			throw new IError('AssetTyoe not valid', 400);
 		}
 		const assets = await assetModel.find({ assetType, available: true });
+		let newAssets: Array<any> = [];
 		if (userId) {
 			const userFavourites = await userModel
 				.findById(userId)
 				.populate('favourites');
-			if (userFavourites) {
+			if (userFavourites?.favourites) {
 				assets.forEach((asset) => {
 					const isFav = userFavourites.favourites.some((favorite) =>
 						//@ts-ignore
 						favorite._id.equals(asset._id.toString()),
 					);
 					// Add the isFav attribute to the asset object
-					asset.isFav = isFav;
+					//@ts-ignore
+					newAssets.push({ ...asset._doc, isFav });
 				});
 			}
 		}
-		res.status(200).json(assets);
+		//@ts-ignore
+		res.status(200).json({ assets: newAssets || assets });
 	} catch (error) {
 		next(error);
 	}
