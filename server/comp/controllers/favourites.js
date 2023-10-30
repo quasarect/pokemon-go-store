@@ -66,8 +66,6 @@ const getFavourites = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         const pgsharpFavourites = favourites === null || favourites === void 0 ? void 0 : favourites.favourites.filter((favourite) => {
             return favourite.assetType === asset_1.AssetTypes.pg_sharp;
         });
-        console.log(((accountFavourites === null || accountFavourites === void 0 ? void 0 : accountFavourites.length) || 0) + ((pgsharpFavourites === null || pgsharpFavourites === void 0 ? void 0 : pgsharpFavourites.length) || 0)),
-            console.log((favourites === null || favourites === void 0 ? void 0 : favourites.favourites.length) || 0);
         while (((accountFavourites === null || accountFavourites === void 0 ? void 0 : accountFavourites.length) || 0) + ((pgsharpFavourites === null || pgsharpFavourites === void 0 ? void 0 : pgsharpFavourites.length) || 0) <
             ((favourites === null || favourites === void 0 ? void 0 : favourites.favourites.length) || 0)) {
         }

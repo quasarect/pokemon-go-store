@@ -58,7 +58,6 @@ const transactionSchema = new mongoose_1.Schema({
     },
     razorpayId: {
         type: String,
-        unique: true,
     },
     manualTransaction: manualTransaction,
 }, { timestamps: true });

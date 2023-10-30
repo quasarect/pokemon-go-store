@@ -44,7 +44,7 @@ const transactionSchema = new Schema<ITransactions>(
 		},
 		razorpayId: {
 			type: String,
-			unique: true,
+			// unique: true,
 		},
 		manualTransaction: manualTransaction,
 	},

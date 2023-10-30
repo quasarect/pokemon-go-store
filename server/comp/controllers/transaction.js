@@ -19,11 +19,11 @@ const transaction_2 = require("../types/models/transaction");
 const IError_1 = require("../types/IError");
 const crypto_1 = __importDefault(require("crypto"));
 const user_1 = __importDefault(require("../models/user"));
-const razorpayKeyId = process.env.RAZORPAY_KEY_ID;
-const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET;
 const order = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
+        const razorpayKeyId = process.env.RAZORPAY_KEY_ID;
+        const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET;
         const { amount } = req.body;
         if (!amount && !(amount instanceof Number)) {
             throw new IError_1.IError('amount is required', 400);
@@ -44,7 +44,7 @@ const order = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         });
         yield transaction.save();
         yield paymentInstance.orders.create({
-            amount: 5,
+            amount: amount * 100,
             currency: 'INR',
             receipt: transaction._id.toString(),
             notes: {

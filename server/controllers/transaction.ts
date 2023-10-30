@@ -7,11 +7,10 @@ import { IError } from '../types/IError';
 import crypto from 'crypto';
 import userModel from '../models/user';
 
-const razorpayKeyId = process.env.RAZORPAY_KEY_ID!;
-const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET!;
-
 export const order: RequestHandler = async (req: IRequest, res, next) => {
 	try {
+		const razorpayKeyId = process.env.RAZORPAY_KEY_ID!;
+		const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET!;
 		const { amount } = req.body;
 		if (!amount && !(amount instanceof Number)) {
 			throw new IError('amount is required', 400);
@@ -33,7 +32,7 @@ export const order: RequestHandler = async (req: IRequest, res, next) => {
 		await transaction.save();
 		await paymentInstance.orders.create(
 			{
-				amount: 5,
+				amount: amount * 100,
 				currency: 'INR',
 				receipt: transaction._id.toString(),
 				notes: {

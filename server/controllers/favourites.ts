@@ -63,10 +63,6 @@ export const getFavourites: RequestHandler = async (
 			//@ts-ignore
 			return favourite.assetType === AssetTypes.pg_sharp;
 		});
-		console.log(
-			(accountFavourites?.length || 0) + (pgsharpFavourites?.length || 0),
-		),
-			console.log(favourites?.favourites.length || 0);
 		while (
 			(accountFavourites?.length || 0) + (pgsharpFavourites?.length || 0) <
 			(favourites?.favourites.length || 0)
