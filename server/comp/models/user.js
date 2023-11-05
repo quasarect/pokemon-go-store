@@ -61,6 +61,12 @@ const userSchema = new mongoose_1.Schema({
             ref: 'asset',
         },
     ],
+    assets: [
+        {
+            type: mongoose_1.default.Schema.Types.ObjectId,
+            ref: 'asset',
+        },
+    ],
 }, { timestamps: true });
 const userModel = (0, mongoose_1.model)('user', userSchema);
 exports.default = userModel;

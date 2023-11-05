@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGlobalSearch = exports.soldAssets = exports.queryAssets = exports.getAssetsByType = exports.getAssetById = exports.deleteAsset = exports.updateAssest = exports.createAsset = void 0;
+exports.getBoughtAssetById = exports.getBoughtAssets = exports.getGlobalSearch = exports.soldAssets = exports.queryAssets = exports.getAssetsByType = exports.getAssetById = exports.deleteAsset = exports.updateAssest = exports.createAsset = void 0;
 const IError_1 = require("../types/IError");
 const asset_1 = __importDefault(require("../models/asset"));
 const asset_2 = require("../types/models/asset");
 const user_1 = __importDefault(require("../models/user"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const createAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { files, assetType, price, info } = req.body;
@@ -96,7 +97,8 @@ const getAssetsByType = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
                 });
             }
         }
-        res.status(200).json({ assets: newAssets || assets });
+        const respAssets = newAssets.length > 0 ? newAssets : assets;
+        res.status(200).json({ assets: respAssets });
     }
     catch (error) {
         next(error);
@@ -158,7 +160,7 @@ const getGlobalSearch = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         }
         yield asset_1.default.find({
             assetType,
-            $or: [{ price: { $eq: parseInt(text) } }],
+            $text: { $search: text },
         });
     }
     catch (error) {
@@ -166,4 +168,47 @@ const getGlobalSearch = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.getGlobalSearch = getGlobalSearch;
+const getBoughtAssets = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    try {
+        const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
+        const user = yield user_1.default.findById(userId).populate('assets');
+        const accounts = user === null || user === void 0 ? void 0 : user.assets.filter((asset) => {
+            return asset.assetType === asset_2.AssetTypes.pogo_account;
+        });
+        const pgsharps = user === null || user === void 0 ? void 0 : user.assets.filter((asset) => {
+            return asset.assetType === asset_2.AssetTypes.pg_sharp;
+        });
+        while (((accounts === null || accounts === void 0 ? void 0 : accounts.length) || 0) + ((pgsharps === null || pgsharps === void 0 ? void 0 : pgsharps.length) || 0) <
+            ((user === null || user === void 0 ? void 0 : user.assets.length) || 0)) {
+        }
+        res.status(200).json({ accounts, pgsharps });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.getBoughtAssets = getBoughtAssets;
+const getBoughtAssetById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c;
+    try {
+        const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.id;
+        const assetId = req.params.assetId;
+        const userAssets = yield user_1.default.findOne({
+            _id: userId,
+            assets: new mongoose_1.default.Types.ObjectId(assetId),
+        });
+        if (userAssets) {
+            const asset = yield asset_1.default.findById(assetId);
+            res.status(200).json(asset);
+        }
+        else {
+            throw new IError_1.IError('Asset not bought', 404);
+        }
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.getBoughtAssetById = getBoughtAssetById;
 //# sourceMappingURL=asset.js.map

@@ -5,6 +5,7 @@ import { useAddRemove } from '../../hooks/useAddRemove';
 
 const PGSharpCard = ({ info, price,id,favbool }) => {
   const {fav,handleToggle} = useAddRemove(id,favbool)
+  const token = localStorage.getItem("token");
   return (
     <div className="pgSharpCard">
       <div className="pg-detail"> {info.phones} Phones</div>
@@ -16,7 +17,7 @@ const PGSharpCard = ({ info, price,id,favbool }) => {
       <div className="pg-price">$ {price}</div>
       <div className="pg-sharp-bottom">
         <RedButton text={"BUY NOW"} />
-        <span onClick={handleToggle}>{fav ? "Remove":"Add"}</span>
+        {token?<span onClick={handleToggle}>{fav ? "Remove":"Add"}</span>:<></>}
       </div>
     </div>
   )

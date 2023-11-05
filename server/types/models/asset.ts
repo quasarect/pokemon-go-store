@@ -3,8 +3,9 @@ import { ObjectId } from 'mongoose';
 export interface IAsset {
 	media: object;
 	assetType: AssetTypes;
-	price: Number;
+	price: number;
 	info: any;
+	private: any;
 	available: boolean;
 	soldTo: ObjectId;
 	transaction: ObjectId;

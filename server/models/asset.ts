@@ -19,6 +19,9 @@ const assetSchema = new Schema<IAsset>(
 		info: {
 			type: Schema.Types.Mixed,
 		},
+		private: {
+			type: Schema.Types.Mixed,
+		},
 		available: {
 			type: Boolean,
 			default: true,

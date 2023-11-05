@@ -63,6 +63,11 @@
     color: #1BA6C9;
 }
 
+.shp-link{
+    width: -webkit-fill-available;
+    text-decoration: none;
+}
+
 @media screen and (max-width:868px){
     .shop-account-card{
         margin: 1.2vw;

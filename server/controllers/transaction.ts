@@ -6,6 +6,7 @@ import { PaymentMethods, TransactionState } from '../types/models/transaction';
 import { IError } from '../types/IError';
 import crypto from 'crypto';
 import userModel from '../models/user';
+import assetModel from '../models/asset';
 
 export const order: RequestHandler = async (req: IRequest, res, next) => {
 	try {
@@ -58,7 +59,6 @@ export const verify: RequestHandler = async (req, res, next) => {
 	try {
 		const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
 			req.body;
-
 		const sign = razorpay_order_id + '|' + razorpay_payment_id;
 		const expectedSign = crypto
 			.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET!)
@@ -85,7 +85,7 @@ export const verify: RequestHandler = async (req, res, next) => {
 				.status(200)
 				.json({ message: `Payment of amount ${amount} successfull` });
 		} else {
-			throw new IError('Invalid Signature', 500);
+			throw new IError('Invalid Signature', 400);
 		}
 	} catch (error) {
 		next(error);
@@ -126,6 +126,31 @@ export const manualTransaction: RequestHandler = async (req, res, next) => {
 		res
 			.status(201)
 			.json({ message: 'Transaction created', id: transaction._id.toString() });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const buyAsset: RequestHandler = async (req: IRequest, res, next) => {
+	try {
+		const assetId = req.params.assetId;
+		const userId = req.user?.id;
+		const asset = await assetModel.findById(assetId);
+		if (!asset) {
+			throw new IError('Asset not found', 404);
+		}
+		const user = await userModel.findById(userId);
+		if (!user) {
+			throw new IError('User not found', 404);
+		}
+		if (user.credits < asset.price) {
+			throw new IError('Insufficient credits', 400);
+		}
+		await userModel.findByIdAndUpdate(userId, {
+			$push: { assets: assetId },
+			$inc: { credits: -asset.price },
+		});
+		res.status(200).json({ message: 'Asset bought' });
 	} catch (error) {
 		next(error);
 	}

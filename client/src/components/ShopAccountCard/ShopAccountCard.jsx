@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAddRemove } from '../../hooks/useAddRemove';
 import { useEffect } from 'react';
 
-const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,isFav, refetch}) => {
+const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,isFav}) => {
   const {fav,handleToggle} = useAddRemove(id,isFav)
   const token = localStorage.getItem("token");
   
@@ -23,10 +23,10 @@ const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,isF
             <div className='legendry'>Legendary: {legendary}</div>
             </div>
             <div className="card-price">
-              <div className="fav-btn" onClick={handleToggle}>{fav ? "Remove":"Add"}</div>
+              {token?<div className="fav-btn" onClick={handleToggle}>{fav ? "Remove":"Add"}</div>:<></>}
               {/* <div className="fav-btn" onClick={handleToggle}>{(isFav) ? "Remove":"Add"}</div> */}
                 <div className="price">$ {price}</div>
-                <RedButton text={"BUY NOW"}/>
+                <Link to={id} className='shp-link'>  <RedButton text={"BUY NOW"} credit ={price} /> </Link>
             </div>
         </div>
     </div>

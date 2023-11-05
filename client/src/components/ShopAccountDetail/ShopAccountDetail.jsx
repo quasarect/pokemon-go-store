@@ -1,20 +1,12 @@
-import React,{useEffect, useState} from 'react';
+import React from 'react';
 import "./ShopAccountDetail.css"
 import RedButton from '../RedButton/RedButton'
 import { assetIdApi } from '../../context/api';
 import userData from '../../hooks/userData';
+import { useParams } from 'react-router-dom';
 
 const ShopAccountDetail = () => {
-    const [id, setId] = useState("");
-    useEffect(() => {
-        const currentURL = window.location.href;
-        const urlParts = currentURL.split(':');
-        if (urlParts.length === 4) {
-          const extractedValue = urlParts[3];
-          setId(extractedValue);
-        }
-      }, []);
-
+    const {id} = useParams();
     const { data, loading, error, refetch } = userData(assetIdApi(id),"GET")
 
     if (data === null){
@@ -46,7 +38,7 @@ const ShopAccountDetail = () => {
 } </div>
             <div className='sh-text-style' ><span className='sh-d'>BlindFlag</span> : {data.info.blind} </div>
             <div className='sh-text-style' ><span className='sh-d'>SlashFlag</span> :  {data.info.slash} </div>
-            <div className="sh-btn"><RedButton text={"BUY NOW"}/> </div>
+            <div className="sh-btn"><RedButton text={"BUY NOW"} type={"pay"} credit={price}/> </div>
         </div>
     )
 }

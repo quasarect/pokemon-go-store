@@ -4,10 +4,7 @@ import assetModel from '../models/asset';
 import { AssetTypes } from '../types/models/asset';
 import { IRequest } from '../types/IRequest';
 import userModel from '../models/user';
-
-// function categorizedFavourites(assets: Array<IAsset>) {
-
-// }
+import mongoose from 'mongoose';
 
 export const createAsset: RequestHandler = async (req, res, next) => {
 	try {
@@ -92,8 +89,9 @@ export const getAssetsByType: RequestHandler = async (
 				});
 			}
 		}
+		const respAssets = newAssets.length > 0 ? newAssets : assets;
 		//@ts-ignore
-		res.status(200).json({ assets: newAssets || assets });
+		res.status(200).json({ assets: respAssets });
 	} catch (error) {
 		next(error);
 	}
@@ -156,8 +154,59 @@ export const getGlobalSearch: RequestHandler = async (req, res, next) => {
 		}
 		await assetModel.find({
 			assetType,
-			$or: [{ price: { $eq: parseInt(text) } }],
+			$text: { $search: text },
 		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getBoughtAssets: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
+	try {
+		const userId = req.user?.id;
+		const user = await userModel.findById(userId).populate('assets');
+		const accounts = user?.assets.filter((asset) => {
+			//@ts-ignore
+			return asset.assetType === AssetTypes.pogo_account;
+		});
+		const pgsharps = user?.assets.filter((asset) => {
+			//@ts-ignore
+			return asset.assetType === AssetTypes.pg_sharp;
+		});
+		while (
+			(accounts?.length || 0) + (pgsharps?.length || 0) <
+			(user?.assets.length || 0)
+		) {
+			//Do nothing
+		}
+		res.status(200).json({ accounts, pgsharps });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getBoughtAssetById: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
+	try {
+		const userId = req.user?.id;
+		const assetId = req.params.assetId;
+		const userAssets = await userModel.findOne({
+			_id: userId,
+			assets: new mongoose.Types.ObjectId(assetId),
+		});
+		if (userAssets) {
+			const asset = await assetModel.findById(assetId);
+			res.status(200).json(asset);
+		} else {
+			throw new IError('Asset not bought', 404);
+		}
 	} catch (error) {
 		next(error);
 	}

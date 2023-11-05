@@ -24,7 +24,7 @@ const UserDetail = () => {
     <div className="user-detail">
         <div className="user-top">
         <ProfilePic profileImage={details.userDetail.userDetails? details.userDetail.userDetails.profilePhoto:DefaultProfileImage}/>
-        <div className="user-name">{details.userDetail.userDetails.name}</div>
+        <div className="user-name">{details.userDetail.userDetails.name}</div> <div className="user-credits"> Credits: {details.userDetail.userDetails.credits}</div>
         <div className="user-email">{details.userDetail.userDetails.email}</div>
         </div>
 

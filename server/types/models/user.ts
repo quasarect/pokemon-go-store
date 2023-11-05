@@ -9,6 +9,7 @@ export interface IUser {
 	profilePhoto: string;
 	oauthCredentials?: OauthCredentials;
 	favourites: Array<ObjectId>;
+	assets: Array<ObjectId>;
 }
 
 export enum AuthTypes {

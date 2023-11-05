@@ -10,8 +10,8 @@ export const LoginValidation = ( credential )=>{
 
     if (!credential.password){
         errors.password = 'Please enter a password';
-    }else if(credential.password.length !== 6) {
-        errors.password = 'Password must be 6 digit ';
+    }else if(credential.password.length >= 6) {
+        errors.password = 'Password must be greater than 6 digit ';
     }
 
       return errors;
@@ -31,8 +31,8 @@ export const SignUpValidation = ( credential )=>{
 
     if (!credential.password){
         errors.password = 'Please enter a password';
-    }else if(credential.password.length !== 6) {
-        errors.password = 'Password must be 6 digit ';
+    }else if(credential.password.length >= 6) {
+        errors.password = 'Password must be greater than 6 digit ';
     }else if(credential.password !== credential.confirmPassword){
         errors.confirmPassword = "password do not match"
     }

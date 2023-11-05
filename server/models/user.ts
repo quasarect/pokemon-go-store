@@ -43,6 +43,12 @@ const userSchema = new Schema<IUser>(
 				ref: 'asset',
 			},
 		],
+		assets: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'asset',
+			},
+		],
 	},
 	{ timestamps: true },
 );

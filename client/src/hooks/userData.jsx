@@ -20,7 +20,6 @@ function userData(url, method) {
   useEffect(() => {
     // setToken(token);
     setLoading(true);
-    if(token){
         fetch(url, options).then(res => res.json())
           .then((data) => {
             // console.log("user",data)
@@ -36,7 +35,7 @@ function userData(url, method) {
           .finally(() => {
             setLoading(false);
           });
-    }
+    
   }, [url]);
 
   const refetch = () => {

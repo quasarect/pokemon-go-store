@@ -12,13 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.manualTransaction = exports.razorpayTransactionCancelled = exports.verify = exports.order = void 0;
+exports.buyAsset = exports.manualTransaction = exports.razorpayTransactionCancelled = exports.verify = exports.order = void 0;
 const razorpay_1 = __importDefault(require("razorpay"));
 const transaction_1 = __importDefault(require("../models/transaction"));
 const transaction_2 = require("../types/models/transaction");
 const IError_1 = require("../types/IError");
 const crypto_1 = __importDefault(require("crypto"));
 const user_1 = __importDefault(require("../models/user"));
+const asset_1 = __importDefault(require("../models/asset"));
 const order = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
@@ -92,7 +93,7 @@ const verify = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
                 .json({ message: `Payment of amount ${amount} successfull` });
         }
         else {
-            throw new IError_1.IError('Invalid Signature', 500);
+            throw new IError_1.IError('Invalid Signature', 400);
         }
     }
     catch (error) {
@@ -134,4 +135,31 @@ const manualTransaction = (req, res, next) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.manualTransaction = manualTransaction;
+const buyAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    try {
+        const assetId = req.params.assetId;
+        const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
+        const asset = yield asset_1.default.findById(assetId);
+        if (!asset) {
+            throw new IError_1.IError('Asset not found', 404);
+        }
+        const user = yield user_1.default.findById(userId);
+        if (!user) {
+            throw new IError_1.IError('User not found', 404);
+        }
+        if (user.credits < asset.price) {
+            throw new IError_1.IError('Insufficient credits', 400);
+        }
+        yield user_1.default.findByIdAndUpdate(userId, {
+            $push: { assets: assetId },
+            $inc: { credits: -asset.price },
+        });
+        res.status(200).json({ message: 'Asset bought' });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.buyAsset = buyAsset;
 //# sourceMappingURL=transaction.js.map
