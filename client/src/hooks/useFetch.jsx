@@ -14,7 +14,7 @@ export const useFetch =(url, method, credential) =>{
       'Content-Type': 'application/json;charset=utf-8',
       'Authorization': token
     },
-    // body: JSON.stringify(credential)
+    body: JSON.stringify(credential)
   }
 
   useEffect(() => {

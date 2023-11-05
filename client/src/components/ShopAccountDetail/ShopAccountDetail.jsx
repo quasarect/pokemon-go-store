@@ -1,8 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import "./ShopAccountDetail.css"
 import RedButton from '../RedButton/RedButton'
-import { useFetch } from '../../hooks/useFetch';
 import { assetIdApi } from '../../context/api';
+import userData from '../../hooks/userData';
 
 const ShopAccountDetail = () => {
     const [id, setId] = useState("");
@@ -15,7 +15,7 @@ const ShopAccountDetail = () => {
         }
       }, []);
 
-    const { data, loading, error, refetch } = useFetch(assetIdApi(id),"GET")
+    const { data, loading, error, refetch } = userData(assetIdApi(id),"GET")
 
     if (data === null){
         return(

@@ -3,10 +3,12 @@ import './ShopAccountCard.css'
 import Pokemons from '../../assets/images/pokemons.svg'
 import { Link } from 'react-router-dom';
 import { useAddRemove } from '../../hooks/useAddRemove';
+import { useEffect } from 'react';
 
-const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,favbool}) => {
-  const {fav,handleToggle} = useAddRemove(id,favbool)
-
+const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,isFav, refetch}) => {
+  const {fav,handleToggle} = useAddRemove(id,isFav)
+  const token = localStorage.getItem("token");
+  
   return (
     <div className="shop-account-card">
         <Link to={id} className="sa-card-top">
@@ -22,6 +24,7 @@ const ShopAccountCard = ({id,level,p_storage,l_storage,shiny,legendary,price,fav
             </div>
             <div className="card-price">
               <div className="fav-btn" onClick={handleToggle}>{fav ? "Remove":"Add"}</div>
+              {/* <div className="fav-btn" onClick={handleToggle}>{(isFav) ? "Remove":"Add"}</div> */}
                 <div className="price">$ {price}</div>
                 <RedButton text={"BUY NOW"}/>
             </div>

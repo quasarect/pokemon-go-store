@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addFavApi,removeFavApi } from "../context/api";
 
-export const useAddRemove =(id,favbool)=>{
+export const useAddRemove =(id,favbool,refetch)=>{
 const [fav, setFav] = useState(favbool? true:false);
 //   const [notify, setNotify] = useState(null)
 

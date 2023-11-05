@@ -11,6 +11,7 @@ import Favourites from './components/Favourites/Favourites';
 import BuyCredits from './pages/BuyCredits/BuyCredits';
 import Login from './pages/Login/Login';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import Recharge from './pages/BuyCredits/Recharge';
 
 function App() {
   return (

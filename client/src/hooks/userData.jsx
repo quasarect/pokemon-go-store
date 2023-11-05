@@ -17,20 +17,18 @@ function userData(url, method) {
     // body: JSON.stringify(credential)
   }
 
-  // let url = "http://localhost:5000/auth/google"
-
   useEffect(() => {
     // setToken(token);
     setLoading(true);
     if(token){
         fetch(url, options).then(res => res.json())
           .then((data) => {
+            // console.log("user",data)
             if(data.user){
               setData(data.user);
             }else{
               setData(data);
             }
-              // console.log("user",data)
           })
           .catch((err) => {
             setError(err);

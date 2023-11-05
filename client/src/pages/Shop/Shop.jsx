@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import Filters from '../../components/Filters/Filters'
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Shop.css'
 import ShopNavbar from '../../components/ShopNavBar/ShopNavbar';
 

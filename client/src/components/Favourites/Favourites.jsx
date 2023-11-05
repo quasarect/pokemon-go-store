@@ -6,6 +6,7 @@ import { allFavApi } from '../../context/api';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import PGSharpCard from '../PGSharpCard/PGSharpCard';
+import { useFetch } from '../../hooks/useFetch';
 
 const Favourites = () => {
     const [favType, setFavType] = useState({
@@ -24,7 +25,7 @@ const Favourites = () => {
         )
     }
 
-  return (
+  return(
     <div className="favourites">
         <div className="favourite-title">FAVOURITES</div>
         {/* Accounts */}
@@ -46,7 +47,7 @@ const Favourites = () => {
                             l_storage={detail.info.l_storage}
                             level={detail.info.level}
                             price = {detail.price}
-                            favbool ={true}
+                            isFav={true}
                             />
                         </div>
                     ))
