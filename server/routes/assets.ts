@@ -5,6 +5,8 @@ import {
 	deleteAsset,
 	getAssetById,
 	getAssetsByType,
+	getBoughtAssetById,
+	getBoughtAssets,
 	queryAssets,
 	soldAssets,
 	updateAssest,
@@ -29,5 +31,9 @@ assetRouter.get('/:assetType/all', getUserDetails, getAssetsByType);
 assetRouter.post('/query', getUserDetails, queryAssets);
 
 assetRouter.use('/favourite', favouriteRouter);
+
+assetRouter.get('/bought', isAuth, getBoughtAssets);
+
+assetRouter.get('/bought/:assetId', isAuth, getBoughtAssetById);
 
 export default assetRouter;

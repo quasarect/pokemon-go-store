@@ -15,6 +15,6 @@ transactionRouter.post('/verify', isAuth, verify);
 
 transactionRouter.post('/manual', isAuth, manualTransaction);
 
-transactionRouter.post('/asset', isAuth, buyAsset);
+transactionRouter.post('/asset/:assetId', isAuth, buyAsset);
 
 export default transactionRouter;
