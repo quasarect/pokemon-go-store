@@ -11,7 +11,7 @@ import Favourites from './components/Favourites/Favourites';
 import BuyCredits from './pages/BuyCredits/BuyCredits';
 import Login from './pages/Login/Login';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-import Recharge from './pages/BuyCredits/Recharge';
+import BoughtCards from './pages/BoughtCards/BoughtCards';
 
 function App() {
   return (
@@ -25,10 +25,12 @@ function App() {
             <Route path='pg-sharps' element={<PGSharp/>}/>
           </Route>
           <Route path='shop/accounts/:id' element={<CardDetail/>}/>
+          {/* <Route path='shop/pg-sharps/:id' element={<CardDetail/>}/> */}
           <Route path='contactUs' element={<ContactUs/>}/>
           <Route path='profile/' element={<Profile/>}>
             <Route index element={<Favourites/>}/>
             <Route path='buy_credits' element={<BuyCredits/>}/>
+            <Route path='your_pokemons' element={<BoughtCards/>}/>
           </Route>
           <Route path='login' element={<Login/>}/>
           <Route path='signup' element = {<Login/>} />

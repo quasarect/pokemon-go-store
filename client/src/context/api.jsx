@@ -27,7 +27,14 @@ export const removeFavApi = (favId) => `http://${IP}/asset/favourite/remove?asse
 export const allFavApi =  `http://${IP}/asset/favourite`
 
 // Payments
-
 export const createOrder = `http://${IP}/transaction/order`
 export const verifyOrder = `http://${IP}/transaction/verify`
 export const mannualTransaction = `http://${IP}/transaction/manual`
+
+//BUY
+export const buyAsset =(assetId)=> `http://${IP}/transaction/asset/${assetId}` 
+
+// Bought Asset buy
+
+export const boughtAsset = `http://${IP}/asset/bought` 
+export const bouAssetById  =(assetId)=> `http://${IP}/asset/bought/${assetId}` 

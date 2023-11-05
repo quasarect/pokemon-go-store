@@ -3,12 +3,14 @@ import ProfilePic from '../components/ProfilePic/ProfilePic';
 import DefaultProfileImage from '../assets/images/defaultProfileImage.svg'
 import './UserDetail.css'
 import BlackButton from '../components/BlackButton/BlackButton';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import { UserContext } from '../context';
 
 const UserDetail = () => {
   const details = useContext(UserContext)
   const navigate = useNavigate()
+
+  const location = useLocation()
 
   const handleLogout = () =>{
     localStorage.removeItem("token");
@@ -30,12 +32,13 @@ const UserDetail = () => {
 
         <div className="user-feature">
             <div className="user-feature-row">
-               <Link className='link-text' to="/profile"> <BlackButton text={"FAVOURITES"}/></Link> 
-               <Link className='link-text' to="buy_credits"><BlackButton  text={"BUY CREDITS"} /></Link> 
+               <Link className='link-text' to="/profile" ><BlackButton text={"FAVOURITES"} path={"/profile"} /></Link> 
+               <Link className='link-text' to="buy_credits" ><BlackButton  text={"BUY CREDITS"} path={"/profile/buy_credits"} /></Link> 
             </div>
             <div className="user-feature-row">
-               <Link className='link-text' to="/shop" ><BlackButton  text={"ACCOUNTS"}/></Link> 
-               <Link className='link-text' to="/shop"><BlackButton  text={"PG SHARP"} /></Link> 
+            <Link className='link-text' to="your_pokemons" ><BlackButton  text={"YOUR POKEMONS"} path={"/profile/your_pokemons"}/></Link> 
+               {/* <Link className='link-text' to="/shop" ><BlackButton  text={"ACCOUNTS"}/></Link> 
+               <Link className='link-text' to="/shop"><BlackButton  text={"PG SHARP"} /></Link>  */}
             </div>
             <div className="logout-btn" onClick={handleLogout}>LogOut</div>
         </div>

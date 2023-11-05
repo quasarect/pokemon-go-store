@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 const ShopAccountDetail = () => {
     const {id} = useParams();
     const { data, loading, error, refetch } = userData(assetIdApi(id),"GET")
-
     if (data === null){
         return(
             <div className="shop-account-detail">
@@ -38,7 +37,7 @@ const ShopAccountDetail = () => {
 } </div>
             <div className='sh-text-style' ><span className='sh-d'>BlindFlag</span> : {data.info.blind} </div>
             <div className='sh-text-style' ><span className='sh-d'>SlashFlag</span> :  {data.info.slash} </div>
-            <div className="sh-btn"><RedButton text={"BUY NOW"} type={"pay"} credit={price}/> </div>
+            <div className="sh-btn"><RedButton text={"BUY NOW"} type={"buyAsset"} credit={data.price} id={data._id}/> </div>
         </div>
     )
 }

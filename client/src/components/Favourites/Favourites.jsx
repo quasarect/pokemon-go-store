@@ -2,19 +2,19 @@ import React, { useState,useEffect } from 'react';
 import './Favourites.css'
 import ShopAccountCard from '../ShopAccountCard/ShopAccountCard';
 import userData from '../../hooks/userData';
-import { allFavApi } from '../../context/api';
+import { allFavApi, boughtAsset } from '../../context/api';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import PGSharpCard from '../PGSharpCard/PGSharpCard';
 import { useFetch } from '../../hooks/useFetch';
 
-const Favourites = () => {
+const Favourites = (title) => {
     const [favType, setFavType] = useState({
         account:false,
         pgsharp:false
     })
 
-    const { data, loading, error, refetch } =  userData(allFavApi,"GET")
+    const { data, loading, error, refetch } =  userData(title !== "FAVOURITES"?boughtAsset:allFavApi,"GET")
     // console.log("fav",data)
     
     if(data === null){
@@ -27,7 +27,7 @@ const Favourites = () => {
 
   return(
     <div className="favourites">
-        <div className="favourite-title">FAVOURITES</div>
+        <div className="favourite-title">{title !== "FAVOURITES"?"YOUR POKEMONS":"FAVOURITES"}</div>
         {/* Accounts */}
         <div className="favourites-cards">
             <div className="fav-cards-type" onClick={()=>{setFavType({account:!favType.account})}}>Accounts <span>{favType.account ?<ArrowDropDownIcon className="favIcon" />:<ArrowDropUpIcon  className="favIcon"/>}</span></div>

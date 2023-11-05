@@ -37,7 +37,7 @@ const Recharge = (credit) => {
             alert("message",err)
         }
     }
-
+    
     async function displayRazorpay(){
         console.log("credit",credit)
         const res = await loadScript(

@@ -46,7 +46,7 @@
 
 
 .user-feature-row .btn-wrapper .black-btn-name{
-    width: 8vw;
+    min-width: 8vw;
     font-weight: 500;
     margin: 1vw;
     font-size: 1.2vw;
@@ -64,6 +64,7 @@
 }
 .link-text{
     text-decoration: none;
+    width: 100%;
 }
 
 .logout-btn{
