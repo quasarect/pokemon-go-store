@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 export const createAsset: RequestHandler = async (req, res, next) => {
 	try {
-		const { files, assetType, price, info } = req.body;
+		const { files, assetType, price, info, display, privateDetails } = req.body;
 		if (!assetType && !price) {
 			throw new IError('Price and type is required', 400);
 		}
@@ -17,6 +17,8 @@ export const createAsset: RequestHandler = async (req, res, next) => {
 			assetType,
 			price,
 			info: JSON.parse(info),
+			display: JSON.parse(display),
+			private: JSON.parse(privateDetails),
 		});
 		await asset.save();
 		res.status(200).json({ message: 'Asset created' });
@@ -27,12 +29,12 @@ export const createAsset: RequestHandler = async (req, res, next) => {
 
 export const updateAssest: RequestHandler = async (req, res, next) => {
 	try {
-		const { files, price, info, assetId } = req.body;
+		const { files, price, info, assetId, display, privateDetails } = req.body;
 		if (!files && !price && !info) {
 			throw new IError('Nothing to update', 400);
 		}
 		await assetModel.findByIdAndUpdate(assetId, {
-			$set: { media: files, price, info },
+			$set: { media: files, price, info, display, private: privateDetails },
 		});
 		res.status(200).json({ message: `${assetId} updated successfully ` });
 	} catch (error) {
@@ -50,10 +52,27 @@ export const deleteAsset: RequestHandler = async (req, res, next) => {
 	}
 };
 
-export const getAssetById: RequestHandler = async (req, res, next) => {
+export const getAssetById: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
 	try {
 		const { assetId } = req.params;
-		const asset = await assetModel.findById(assetId);
+		let Private: boolean = false;
+		const userId = req.user?.id;
+		if (userId) {
+			const userAssets = await userModel.findOne({
+				_id: userId,
+				assets: new mongoose.Types.ObjectId(assetId),
+			});
+			if (userAssets) {
+				Private = true;
+			}
+		}
+		console.log(Private);
+		const selectObject = Private ? '' : '-private';
+		const asset = await assetModel.findById(assetId).select(selectObject);
 		res.status(200).json(asset);
 	} catch (error) {
 		next(error);
@@ -71,7 +90,7 @@ export const getAssetsByType: RequestHandler = async (
 		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
 			throw new IError('AssetTyoe not valid', 400);
 		}
-		const assets = await assetModel.find({ assetType, available: true });
+		const assets = await assetModel.find({ assetType, available: true }).select('-private');
 		let newAssets: Array<any> = [];
 		if (userId) {
 			const userFavourites = await userModel
@@ -173,40 +192,17 @@ export const getBoughtAssets: RequestHandler = async (
 			//@ts-ignore
 			return asset.assetType === AssetTypes.pogo_account;
 		});
-		const pgsharps = user?.assets.filter((asset) => {
+		const pgsharp = user?.assets.filter((asset) => {
 			//@ts-ignore
 			return asset.assetType === AssetTypes.pg_sharp;
 		});
 		while (
-			(accounts?.length || 0) + (pgsharps?.length || 0) <
+			(accounts?.length || 0) + (pgsharp?.length || 0) <
 			(user?.assets.length || 0)
 		) {
 			//Do nothing
 		}
-		res.status(200).json({ accounts, pgsharps });
-	} catch (error) {
-		next(error);
-	}
-};
-
-export const getBoughtAssetById: RequestHandler = async (
-	req: IRequest,
-	res,
-	next,
-) => {
-	try {
-		const userId = req.user?.id;
-		const assetId = req.params.assetId;
-		const userAssets = await userModel.findOne({
-			_id: userId,
-			assets: new mongoose.Types.ObjectId(assetId),
-		});
-		if (userAssets) {
-			const asset = await assetModel.findById(assetId);
-			res.status(200).json(asset);
-		} else {
-			throw new IError('Asset not bought', 404);
-		}
+		res.status(200).json({ accounts, pgsharp });
 	} catch (error) {
 		next(error);
 	}

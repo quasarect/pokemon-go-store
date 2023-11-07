@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBoughtAssetById = exports.getBoughtAssets = exports.getGlobalSearch = exports.soldAssets = exports.queryAssets = exports.getAssetsByType = exports.getAssetById = exports.deleteAsset = exports.updateAssest = exports.createAsset = void 0;
+exports.getBoughtAssets = exports.getGlobalSearch = exports.soldAssets = exports.queryAssets = exports.getAssetsByType = exports.getAssetById = exports.deleteAsset = exports.updateAssest = exports.createAsset = void 0;
 const IError_1 = require("../types/IError");
 const asset_1 = __importDefault(require("../models/asset"));
 const asset_2 = require("../types/models/asset");
@@ -20,7 +20,7 @@ const user_1 = __importDefault(require("../models/user"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const createAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { files, assetType, price, info } = req.body;
+        const { files, assetType, price, info, display, privateDetails } = req.body;
         if (!assetType && !price) {
             throw new IError_1.IError('Price and type is required', 400);
         }
@@ -29,6 +29,8 @@ const createAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             assetType,
             price,
             info: JSON.parse(info),
+            display: JSON.parse(display),
+            private: JSON.parse(privateDetails),
         });
         yield asset.save();
         res.status(200).json({ message: 'Asset created' });
@@ -40,12 +42,12 @@ const createAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
 exports.createAsset = createAsset;
 const updateAssest = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { files, price, info, assetId } = req.body;
+        const { files, price, info, assetId, display, privateDetails } = req.body;
         if (!files && !price && !info) {
             throw new IError_1.IError('Nothing to update', 400);
         }
         yield asset_1.default.findByIdAndUpdate(assetId, {
-            $set: { media: files, price, info },
+            $set: { media: files, price, info, display, private: privateDetails },
         });
         res.status(200).json({ message: `${assetId} updated successfully ` });
     }
@@ -66,9 +68,23 @@ const deleteAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
 });
 exports.deleteAsset = deleteAsset;
 const getAssetById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const { assetId } = req.params;
-        const asset = yield asset_1.default.findById(assetId);
+        let Private = false;
+        const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+        if (userId) {
+            const userAssets = yield user_1.default.findOne({
+                _id: userId,
+                assets: new mongoose_1.default.Types.ObjectId(assetId),
+            });
+            if (userAssets) {
+                Private = true;
+            }
+        }
+        console.log(Private);
+        const selectObject = Private ? '' : '-private';
+        const asset = yield asset_1.default.findById(assetId).select(selectObject);
         res.status(200).json(asset);
     }
     catch (error) {
@@ -77,14 +93,14 @@ const getAssetById = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.getAssetById = getAssetById;
 const getAssetsByType = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _b;
     try {
         const { assetType } = req.params;
-        const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+        const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
         if (!Object.values(asset_2.AssetTypes).includes(assetType)) {
             throw new IError_1.IError('AssetTyoe not valid', 400);
         }
-        const assets = yield asset_1.default.find({ assetType, available: true });
+        const assets = yield asset_1.default.find({ assetType, available: true }).select('-private');
         let newAssets = [];
         if (userId) {
             const userFavourites = yield user_1.default
@@ -169,46 +185,24 @@ const getGlobalSearch = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.getGlobalSearch = getGlobalSearch;
 const getBoughtAssets = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _b;
+    var _c;
     try {
-        const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
+        const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.id;
         const user = yield user_1.default.findById(userId).populate('assets');
         const accounts = user === null || user === void 0 ? void 0 : user.assets.filter((asset) => {
             return asset.assetType === asset_2.AssetTypes.pogo_account;
         });
-        const pgsharps = user === null || user === void 0 ? void 0 : user.assets.filter((asset) => {
+        const pgsharp = user === null || user === void 0 ? void 0 : user.assets.filter((asset) => {
             return asset.assetType === asset_2.AssetTypes.pg_sharp;
         });
-        while (((accounts === null || accounts === void 0 ? void 0 : accounts.length) || 0) + ((pgsharps === null || pgsharps === void 0 ? void 0 : pgsharps.length) || 0) <
+        while (((accounts === null || accounts === void 0 ? void 0 : accounts.length) || 0) + ((pgsharp === null || pgsharp === void 0 ? void 0 : pgsharp.length) || 0) <
             ((user === null || user === void 0 ? void 0 : user.assets.length) || 0)) {
         }
-        res.status(200).json({ accounts, pgsharps });
+        res.status(200).json({ accounts, pgsharp });
     }
     catch (error) {
         next(error);
     }
 });
 exports.getBoughtAssets = getBoughtAssets;
-const getBoughtAssetById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
-    try {
-        const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.id;
-        const assetId = req.params.assetId;
-        const userAssets = yield user_1.default.findOne({
-            _id: userId,
-            assets: new mongoose_1.default.Types.ObjectId(assetId),
-        });
-        if (userAssets) {
-            const asset = yield asset_1.default.findById(assetId);
-            res.status(200).json(asset);
-        }
-        else {
-            throw new IError_1.IError('Asset not bought', 404);
-        }
-    }
-    catch (error) {
-        next(error);
-    }
-});
-exports.getBoughtAssetById = getBoughtAssetById;
 //# sourceMappingURL=asset.js.map

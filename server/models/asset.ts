@@ -6,7 +6,6 @@ const assetSchema = new Schema<IAsset>(
 		media: {
 			type: Object,
 		},
-
 		assetType: {
 			type: String,
 			enum: AssetTypes,
@@ -20,6 +19,9 @@ const assetSchema = new Schema<IAsset>(
 			type: Schema.Types.Mixed,
 		},
 		private: {
+			type: Schema.Types.Mixed,
+		},
+		display: {
 			type: Schema.Types.Mixed,
 		},
 		available: {

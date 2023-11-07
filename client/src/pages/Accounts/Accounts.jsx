@@ -6,7 +6,6 @@ import userData from '../../hooks/userData';
 
 const Accounts = () => {
   const { data, loading, error, refetch } = userData(assetTypeApi('account'), "GET");
-  // console.log("account",data)
 
   if (data === null) {
     return (
@@ -21,11 +20,11 @@ const Accounts = () => {
               <div  className='card-link'>
                 <ShopAccountCard
                   id = {detail._id}
-                  shiny={detail.info.shiny}
-                  legendary={detail.info.legendary}
-                  p_storage={detail.info.p_storage}
-                  l_storage={detail.info.l_storage}
-                  level={detail.info.level}
+                  shiny={detail.display.shiny}
+                  legendary={detail.display.legendary}
+                  p_storage={detail.display.p_storage}
+                  l_storage={detail.display.l_storage}
+                  level={detail.display.level}
                   price = {detail.price}
                   isFav = {detail.isFav}
                 />

@@ -4,7 +4,7 @@ import Favourites from '../../components/Favourites/Favourites';
 const BoughtCards = () => {
     return (
         <>
-            <Favourites title={"FAVOURITES"} />
+            <Favourites title={"YOUR POKEMONS"} />
         </>
     )
 }

@@ -6,6 +6,7 @@ export interface IAsset {
 	price: number;
 	info: any;
 	private: any;
+	display: any;
 	available: boolean;
 	soldTo: ObjectId;
 	transaction: ObjectId;

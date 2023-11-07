@@ -18,6 +18,5 @@ assetRouter.get('/:assetType/all', auth_1.getUserDetails, asset_1.getAssetsByTyp
 assetRouter.post('/query', auth_1.getUserDetails, asset_1.queryAssets);
 assetRouter.use('/favourite', favourite_1.default);
 assetRouter.get('/bought', auth_1.isAuth, asset_1.getBoughtAssets);
-assetRouter.get('/bought/:assetId', auth_1.isAuth, asset_1.getBoughtAssetById);
 exports.default = assetRouter;
 //# sourceMappingURL=assets.js.map

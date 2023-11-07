@@ -140,6 +140,7 @@ const buyAsset = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     try {
         const assetId = req.params.assetId;
         const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
+        console.log(assetId, userId);
         const asset = yield asset_1.default.findById(assetId);
         if (!asset) {
             throw new IError_1.IError('Asset not found', 404);

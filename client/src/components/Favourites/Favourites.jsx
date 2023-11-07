@@ -41,11 +41,11 @@ const Favourites = (title) => {
                         <div className="card" key={id}>
                             <ShopAccountCard
                             id = {detail._id}
-                            shiny={detail.info.shiny}
-                            legendary={detail.info.legendary}
-                            p_storage={detail.info.p_storage}
-                            l_storage={detail.info.l_storage}
-                            level={detail.info.level}
+                            shiny={detail.display.shiny}
+                            legendary={detail.display.legendary}
+                            p_storage={detail.display.p_storage}
+                            l_storage={detail.display.l_storage}
+                            level={detail.display.level}
                             price = {detail.price}
                             isFav={true}
                             />

@@ -135,6 +135,7 @@ export const buyAsset: RequestHandler = async (req: IRequest, res, next) => {
 	try {
 		const assetId = req.params.assetId;
 		const userId = req.user?.id;
+		console.log(assetId, userId);
 		const asset = await assetModel.findById(assetId);
 		if (!asset) {
 			throw new IError('Asset not found', 404);

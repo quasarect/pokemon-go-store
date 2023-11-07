@@ -1,0 +1,434 @@
+{
+	"accounts": [
+		{
+			"account": "Pokemon Trainer Club Account",
+			"condition": "SecondHand",
+			"google_login": true,
+			"apple_login": false,
+			"facebook_login": false,
+			"email": true,
+			"password": false,
+			"gender": false,
+			"avatar": true,
+			"inGameName": "Lvl Up Master",
+			"trade": "Only select Pokemon are tradeable",
+			"pokemon": "All types available",
+			"team": "Instinct",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Google Account",
+			"condition": "Used",
+			"google_login": true,
+			"apple_login": false,
+			"facebook_login": false,
+			"email": true,
+			"password": true,
+			"gender": false,
+			"avatar": true,
+			"inGameName": "PokeMaster123",
+			"trade": "Limited trades available",
+			"pokemon": "Rare and powerful",
+			"team": "Valor",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Apple Account",
+			"condition": "FirstHand",
+			"google_login": false,
+			"apple_login": true,
+			"facebook_login": false,
+			"email": true,
+			"password": false,
+			"gender": true,
+			"avatar": true,
+			"inGameName": "GottaCatchEmAll",
+			"trade": "Limited to friends only",
+			"pokemon": "Region-specific",
+			"team": "Mystic",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Facebook Account",
+			"condition": "Used",
+			"google_login": false,
+			"apple_login": false,
+			"facebook_login": true,
+			"email": true,
+			"password": false,
+			"gender": true,
+			"avatar": false,
+			"inGameName": "PokeHunterX",
+			"trade": "No trades available",
+			"pokemon": "Collection of favorites",
+			"team": "Instinct",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Pokemon Trainer Club Account",
+			"condition": "FirstHand",
+			"google_login": false,
+			"apple_login": false,
+			"facebook_login": true,
+			"email": true,
+			"password": true,
+			"gender": true,
+			"avatar": false,
+			"inGameName": "3 times left",
+			"trade": "All pokeomns are tradeable",
+			"pokemon": "All as described",
+			"team": "Mystic",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Google Account",
+			"condition": "Used",
+			"google_login": true,
+			"apple_login": false,
+			"facebook_login": false,
+			"email": true,
+			"password": true,
+			"gender": false,
+			"avatar": true,
+			"inGameName": "PokeLover123",
+			"trade": "Limited trades available",
+			"pokemon": "Rare and powerful",
+			"team": "Valor",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Apple Account",
+			"condition": "FirstHand",
+			"google_login": false,
+			"apple_login": true,
+			"facebook_login": false,
+			"email": true,
+			"password": false,
+			"gender": true,
+			"avatar": true,
+			"inGameName": "PokeMasterX",
+			"trade": "Limited to friends only",
+			"pokemon": "Region-specific",
+			"team": "Mystic",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		},
+		{
+			"account": "Facebook Account",
+			"condition": "Used",
+			"google_login": false,
+			"apple_login": false,
+			"facebook_login": true,
+			"email": true,
+			"password": false,
+			"gender": true,
+			"avatar": false,
+			"inGameName": "PokeHunter2000",
+			"trade": "No trades available",
+			"pokemon": "Collection of favorites",
+			"team": "Instinct",
+			"discipline": "None",
+			"warning": "None",
+			"suspension": "None",
+			"blind": "None",
+			"slash": "None"
+		}
+	],
+	"pg_sharps": [
+		{
+			"phones": 2,
+			"features": [
+				"All free features",
+				"All coordinates feed",
+				"Quick Cathc",
+				"Skip Animations",
+				"Block Non-Shiny",
+				"Auto Transfer On Catch"
+			]
+		},
+		{
+			"phones": 1,
+			"features": [
+				"All free features",
+				"Incubate Eggs",
+				"Catch 'em All",
+				"Location Spoofing",
+				"Auto Pokestop Spin",
+				"Auto Evolve"
+			]
+		},
+		{
+			"phones": 3,
+			"features": [
+				"All free features",
+				"Fast Catch Glitch",
+				"Teleportation",
+				"Shiny Radar",
+				"Auto Transfer Duplicates",
+				"Quest Bot"
+			]
+		},
+		{
+			"phones": 2,
+			"features": [
+				"All free features",
+				"Raid Locator",
+				"Auto Rename Favorites",
+				"Candy Farming",
+				"Auto Max CP",
+				"Trade Optimizer"
+			]
+		},
+		{
+			"phones": 1,
+			"features": [
+				"All free features",
+				"Perfect IV Checker",
+				"Gym Battle Assistant",
+				"Remote Raids",
+				"Auto Heal",
+				"Rare Candy Converter"
+			]
+		},
+		{
+			"phones": 2,
+			"features": [
+				"All free features",
+				"Nest Locator",
+				"Auto Berry Feeder",
+				"Pokemon Inventory Sorter",
+				"Auto Power Up",
+				"Shiny Trade Bot"
+			]
+		},
+		{
+			"phones": 1,
+			"features": [
+				"All free features",
+				"PvP Battle Simulator",
+				"Auto Field Research",
+				"Buddy Walk Bot",
+				"Raid Party Organizer",
+				"Lucky Egg Timer"
+			]
+		},
+		{
+			"phones": 2,
+			"features": [
+				"All free features",
+				"IV Calculator",
+				"Egg Hatcher",
+				"Auto Inventory Management",
+				"Shiny Trade Manager",
+				"XP Booster"
+			]
+		}
+	],
+	"accounts_private": [
+		{
+			"email": "user1@gmail.com",
+			"password": "dummy_password",
+			"contact": "1234567890",
+			"username": "dsojcbdsjncjnc",
+			"trainer_level": 40,
+			"team": "Valor",
+			"friends_count": 300,
+			"pokemon_count": 500,
+			"items_count": 1000,
+			"location": "New York",
+			"active_events": "Community Day, Raid Hour",
+			"buddy_pokemon": "Mewtwo",
+			"favorite_pokemon": "Charizard"
+		},
+		{
+			"email": "user2@gmail.com",
+			"password": "secure_password",
+			"contact": "9876543210",
+			"username": "pokemon_master123",
+			"trainer_level": 36,
+			"team": "Mystic",
+			"friends_count": 200,
+			"pokemon_count": 400,
+			"items_count": 800,
+			"location": "Los Angeles",
+			"active_events": "Legendary Raids",
+			"buddy_pokemon": "Tyranitar",
+			"favorite_pokemon": "Blastoise"
+		},
+		{
+			"email": "user3@gmail.com",
+			"password": "pikachu123",
+			"contact": "5555555555",
+			"username": "poke_trainer007",
+			"trainer_level": 38,
+			"team": "Instinct",
+			"friends_count": 250,
+			"pokemon_count": 450,
+			"items_count": 900,
+			"location": "Chicago",
+			"active_events": "Special_Trades, PvP_Tournaments",
+			"buddy_pokemon": "Gyarados",
+			"favorite_pokemon": "Dragonite"
+		},
+		{
+			"email": "user4@gmail.com",
+			"password": "pokemaster123",
+			"contact": "9876543210",
+			"username": "gottacatchemall",
+			"trainer_level": 32,
+			"team": "Valor",
+			"friends_count": 180,
+			"pokemon_count": 350,
+			"items_count": 700,
+			"location": "San Francisco",
+			"active_events": "Community Day",
+			"buddy_pokemon": "Lapras",
+			"favorite_pokemon": "Snorlax"
+		},
+		{
+			"email": "user5@gmail.com",
+			"password": "pikapika",
+			"contact": "1234567890",
+			"username": "pokemonfanatic",
+			"trainer_level": 34,
+			"team": "Mystic",
+			"friends_count": 220,
+			"pokemon_count": 400,
+			"items_count": 800,
+			"location": "Seattle",
+			"active_events": "Legendary Raids, Raid Hour",
+			"buddy_pokemon": "Vaporeon",
+			"favorite_pokemon": "Jolteon"
+		},
+		{
+			"email": "user6@gmail.com",
+			"password": "bulbasaur123",
+			"contact": "5555555555",
+			"username": "grass_type_master",
+			"trainer_level": 36,
+			"team": "Instinct",
+			"friends_count": 260,
+			"pokemon_count": 480,
+			"items_count": 900,
+			"location": "Los Angeles",
+			"active_events": "Raid Hour",
+			"buddy_pokemon": "Bulbasaur",
+			"favorite_pokemon": "Venusaur"
+		},
+		{
+			"email": "user7@gmail.com",
+			"password": "charmander123",
+			"contact": "1234567890",
+			"username": "fire_pokemon_trainer",
+			"trainer_level": 35,
+			"team": "Valor",
+			"friends_count": 240,
+			"pokemon_count": 430,
+			"items_count": 750,
+			"location": "Chicago",
+			"active_events": "Community Day, Legendary Raids",
+			"buddy_pokemon": "Charmander",
+			"favorite_pokemon": "Charizard"
+		},
+		{
+			"email": "user8@gmail.com",
+			"password": "squirtle123",
+			"contact": "9876543210",
+			"username": "water_type_master",
+			"trainer_level": 33,
+			"team": "Mystic",
+			"friends_count": 210,
+			"pokemon_count": 390,
+			"items_count": 780,
+			"location": "San Francisco",
+			"active_events": "Community Day, Special_Trades",
+			"buddy_pokemon": "Squirtle",
+			"favorite_pokemon": "Blastoise"
+		}
+	],
+	"accounts_display": [
+		{
+			"shiny": 210,
+			"legendary": 40,
+			"p_storage": 120,
+			"l_storage": 32,
+			"level": 55
+		},
+		{
+			"shiny": 180,
+			"legendary": 35,
+			"p_storage": 110,
+			"l_storage": 28,
+			"level": 50
+		},
+		{
+			"shiny": 200,
+			"legendary": 38,
+			"p_storage": 115,
+			"l_storage": 30,
+			"level": 53
+		},
+		{
+			"shiny": 190,
+			"legendary": 37,
+			"p_storage": 115,
+			"l_storage": 29,
+			"level": 52
+		},
+		{
+			"shiny": 220,
+			"legendary": 45,
+			"p_storage": 130,
+			"l_storage": 34,
+			"level": 58
+		},
+		{
+			"shiny": 205,
+			"legendary": 42,
+			"p_storage": 125,
+			"l_storage": 32,
+			"level": 56
+		},
+		{
+			"shiny": 195,
+			"legendary": 38,
+			"p_storage": 115,
+			"l_storage": 31,
+			"level": 53
+		},
+		{
+			"shiny": 225,
+			"legendary": 48,
+			"p_storage": 135,
+			"l_storage": 36,
+			"level": 60
+		}
+	]
+}

@@ -44,6 +44,9 @@ const assetSchema = new mongoose_1.Schema({
     private: {
         type: mongoose_1.Schema.Types.Mixed,
     },
+    display: {
+        type: mongoose_1.Schema.Types.Mixed,
+    },
     available: {
         type: Boolean,
         default: true,
