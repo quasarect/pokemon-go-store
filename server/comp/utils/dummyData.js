@@ -29,10 +29,9 @@ mongoose_1.default
     for (let i = 0; i < 8; i++) {
         const min = 50;
         const max = 100;
-        const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
         const account = new asset_1.default({
             assetType: asset_2.AssetTypes.pogo_account,
-            price: randomNum,
+            price: Math.floor(Math.random() * (max - min + 1)) + min,
             info: accounts[i],
             private: accountsPrivate[i],
             display: accountDisplay[i],
@@ -41,7 +40,7 @@ mongoose_1.default
             assetType: asset_2.AssetTypes.pg_sharp,
             info: pgSharps[i],
             private: accountsPrivate[i],
-            price: randomNum,
+            price: Math.floor(Math.random() * (max - min + 1)) + min,
         });
         yield pg_sharp.save();
         console.log(`pgsharp ${i + 1} saved`);

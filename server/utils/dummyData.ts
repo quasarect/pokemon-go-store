@@ -23,10 +23,10 @@ mongoose
 		for (let i: number = 0; i < 8; i++) {
 			const min = 50;
 			const max = 100;
-			const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
 			const account = new assetModel({
 				assetType: AssetTypes.pogo_account,
-				price: randomNum,
+				price: Math.floor(Math.random() * (max - min + 1)) + min,
 				info: accounts[i],
 				private: accountsPrivate[i],
 				display: accountDisplay[i],
@@ -34,8 +34,8 @@ mongoose
 			const pg_sharp = new assetModel({
 				assetType: AssetTypes.pg_sharp,
 				info: pgSharps[i],
-        private: accountsPrivate[i],
-				price: randomNum,
+				private: accountsPrivate[i],
+				price: Math.floor(Math.random() * (max - min + 1)) + min,
 			});
 			await pg_sharp.save();
 
@@ -45,6 +45,6 @@ mongoose
 
 			console.log(`account ${i + 1} saved`);
 		}
-    process.exit(0);
+		process.exit(0);
 	})
 	.catch((err) => console.log(err));

@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon comp/app.js",
     "watch": "tsc -w",
-    "deploy":"node comp/app.js"
+    "deploy":"node comp/app.js",
+    "dummy":"ts-node utils/dummyData.ts"
   },
   "author": "",
   "license": "ISC",

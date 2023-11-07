@@ -35,6 +35,7 @@ function App() {
           <Route path='login' element={<Login/>}/>
           <Route path='signup' element = {<Login/>} />
           <Route path='callback/google' element= {<LoadingSpinner/>}/>
+          <Route path='callback/facebook' element={<LoadingSpinner/>}/>
         </Route>
       </Routes>
     </Router>
