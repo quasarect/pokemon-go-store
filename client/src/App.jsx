@@ -28,10 +28,11 @@ function App() {
           {/* <Route path='shop/pg-sharps/:id' element={<CardDetail/>}/> */}
           <Route path='contactUs' element={<ContactUs/>}/>
           <Route path='profile/' element={<Profile/>}>
-            <Route index element={<Favourites/>}/>
+            <Route index element={<Favourites title={"FAVOURITES"}/>}/>
             <Route path='buy_credits' element={<BuyCredits/>}/>
             <Route path='your_pokemons' element={<BoughtCards/>}/>
           </Route>
+          <Route path='profile/accounts/:id' element={<CardDetail/>}/>
           <Route path='login' element={<Login/>}/>
           <Route path='signup' element = {<Login/>} />
           <Route path='callback/google' element= {<LoadingSpinner/>}/>

@@ -52,8 +52,8 @@ const Recharge = (credit) => {
         // const result = await axios.post("http://localhost:5000/payment/orders");
         const result = await fetchData(createOrder)
 
-        console.log("result",result)
-        if (!result) {
+        
+        if (!result || result.message) {
             alert("Server error. Are you online?");
             return;
         }
