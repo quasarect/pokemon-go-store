@@ -15,11 +15,10 @@ const LoadingSpinner = () => {
   }, [location]);
 
   const loginApi = async (queryParamValue) => {
-    const url =
-      "http://localhost:5000/auth/" + location.pathname.includes("google")
-        ? "google"
-        : "facebook";
-
+    const url = `http://localhost:5000/auth/${
+      location.pathname.includes("google") ? "google" : "facebook"
+    }`;
+    console.log("url", url);
     let options = {
       method: "POST",
       headers: {
