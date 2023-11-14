@@ -3,6 +3,8 @@ import RedButton from '../RedButton/RedButton';
 import './PGSharpCard.css'
 import { useAddRemove } from '../../hooks/useAddRemove';
 import { Link } from 'react-router-dom';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const PGSharpCard = ({ info, price,id,favbool }) => {
   const {fav,handleToggle} = useAddRemove(id,favbool)
@@ -19,7 +21,7 @@ const PGSharpCard = ({ info, price,id,favbool }) => {
       <div className="pg-sharp-bottom">
         <RedButton text={"BUY NOW"} credit ={price} type={"buyAsset"} />
         {/* <Link to={id} className='shp-link'><RedButton text={"BUY NOW"} credit ={price} type={null}/> </Link> */}
-        {token?<span onClick={handleToggle}>{fav ? "Remove":"Add"}</span>:<></>}
+        {token?<span onClick={handleToggle}>{fav ? <FavoriteIcon className="fav-icon"/>:<FavoriteBorderIcon className="fav-icon"/>}</span>:<></>}
       </div>
     </div>
   )

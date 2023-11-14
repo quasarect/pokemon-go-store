@@ -14,7 +14,12 @@
     align-items: center;
     cursor: pointer;
 }
-
+.red-btn span{
+    margin-top: 2px;
+}
+.red-btn-loading{
+    margin: 2rem 0rem;
+}
 @media screen and (max-width:600px) {
     .red-btn{
         margin: 1rem 0rem;

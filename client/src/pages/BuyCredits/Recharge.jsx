@@ -1,7 +1,10 @@
 import { createOrder, verifyOrder } from "../../context/api";
 import logo from "../../assets/icons/logo.svg";
+import { useState } from "react";
 
 const Recharge = (credit) => {
+  const [loading , setLoading] =  useState(false);
+
   const loadScript = (src) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -31,6 +34,7 @@ const Recharge = (credit) => {
 
     try {
       const res = await fetch(api, option).then((res) => res.json());
+      setLoading(false);
       return res;
     } catch (err) {
       alert("message", err);
@@ -38,20 +42,25 @@ const Recharge = (credit) => {
   };
 
   async function displayRazorpay() {
-    console.log("credit", credit);
+    // console.log("credit", credit);
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
 
+    // console.log("recharge res", res);
     if (!res) {
       alert("Razorpay failed to load. Are you online?");
       return;
     }
-
     // const result = await axios.post("http://localhost:5000/payment/orders");
+    setLoading(true);
     const result = await fetchData(createOrder);
+    // console.log("recharge result", result,result.status);
 
-    console.log(result);
+    // console.log(result);
+    if(result.message === "Internal server error"){
+        alert("Server Error. Please Try Again")
+    }
     if (!result) {
       alert("Server error. Are you online?");
       return;
@@ -69,7 +78,7 @@ const Recharge = (credit) => {
       // image:"/assets/icons/logo.svg",
       order_id: order_id,
       handler: async function (response) {
-        console.log("veri", response);
+        // console.log("veri", response);
         const data = {
           method: "POST",
           headers: {
@@ -105,7 +114,7 @@ const Recharge = (credit) => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   }
-  return { displayRazorpay };
+  return { displayRazorpay,loading };
 };
 
 export default Recharge;

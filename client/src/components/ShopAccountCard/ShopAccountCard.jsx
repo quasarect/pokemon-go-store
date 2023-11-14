@@ -3,6 +3,8 @@ import "./ShopAccountCard.css";
 import Pokemons from "../../assets/images/pokemons.svg";
 import { Link } from "react-router-dom";
 import { useAddRemove } from "../../hooks/useAddRemove";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ShopAccountCard = ({
   id,
@@ -34,7 +36,8 @@ const ShopAccountCard = ({
         <div className="card-price">
           {token ? (
             <div className="fav-btn" onClick={handleToggle}>
-              {fav ? "Remove" : "Add"}
+              {/* {fav ? "Remove" : "Add"} */}
+              {fav ? <FavoriteIcon className="fav-icon"/>:<FavoriteBorderIcon className="fav-icon"/>}
             </div>
           ) : (
             <></>

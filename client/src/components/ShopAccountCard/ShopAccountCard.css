@@ -10,7 +10,7 @@
 
 }
 .sa-card-top{
-    width: 98%;
+    /* width: 98%; */
     height: 178px;
     display: flex;
 }
@@ -22,10 +22,10 @@
     border: 3px solid #1BA6C9;
 }
 .sa-card-bottom{
-    width: 95%;
+    /* width: 95%; */
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.8rem;
     margin: 0.8rem 0rem;
 }
 .level ,.P-storage, .I-storage, .shiny, .legendry{
@@ -52,7 +52,7 @@
     /* font-size: 16px; */
     font-size: 1.2vw;
     margin: 0.5rem 0rem;
-    padding: 7% 9%;
+    padding: 7% 12%;
     margin-bottom: 0rem;
 }
 
@@ -62,10 +62,17 @@
     margin-bottom: 2px;
     color: #1BA6C9;
 }
+.fav-btn .fav-icon{
+    color: #F31559;
+    font-size: 32px;
+}
 
 .shp-link{
     width: -webkit-fill-available;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width:868px){
