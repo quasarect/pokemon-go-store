@@ -109,12 +109,39 @@ const googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.googleLogin = googleLogin;
-const facebookLogin = (req, res, next) => {
+const facebookLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { code } = req.query;
+        const { access_token, token_type } = yield axios_1.default.get(`https://graph.facebook.com/v18.0/oauth/access_token?
+		client_id=${process.env.FACEBOOK_CLIENT_ID}
+		&redirect_uri=${process.env.FACEBOOK_REDIRECT_URL}
+		&client_secret=${process.env.FACEBOOK_CLIENT_SECRET}
+		&code=${code}`);
+        const details = '';
+        let searchUser = yield user_1.default.findOne({ email: details.email });
+        if (searchUser) {
+            const user = new user_1.default({
+                name: details.name,
+                email: details.email,
+                profilePhoto: details.picture.data.url,
+                authType: user_2.AuthTypes.facebook,
+                oauthCredentials: {
+                    accessToken: access_token,
+                    tokenType: token_type,
+                },
+            });
+            yield user.save();
+            searchUser = user;
+        }
+        res.status(200).json({
+            message: 'Login successful',
+            token: (0, auth_1.generateToken)(searchUser._id.toString(), details.email),
+            isAdmin: yield (0, adminCheck_1.checkAdmin)(searchUser.email),
+        });
     }
     catch (error) {
         next(error);
     }
-};
+});
 exports.facebookLogin = facebookLogin;
 //# sourceMappingURL=auth.js.map

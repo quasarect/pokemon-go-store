@@ -108,13 +108,14 @@ export const googleLogin: RequestHandler = async (req, res, next) => {
 export const facebookLogin: RequestHandler = async (req, res, next) => {
 	try {
 		const { code } = req.query;
+		//@ts-ignore
 		const { access_token, token_type } =
 			await axios.get(`https://graph.facebook.com/v18.0/oauth/access_token?
 		client_id=${process.env.FACEBOOK_CLIENT_ID}
 		&redirect_uri=${process.env.FACEBOOK_REDIRECT_URL}
 		&client_secret=${process.env.FACEBOOK_CLIENT_SECRET}
 		&code=${code}`);
-		const details = '';
+		const details: any = '';
 		let searchUser = await userModel.findOne({ email: details.email });
 		if (searchUser) {
 			const user = new userModel({
@@ -132,8 +133,8 @@ export const facebookLogin: RequestHandler = async (req, res, next) => {
 		}
 		res.status(200).json({
 			message: 'Login successful',
-			token: generateToken(searchUser._id.toString(), details.email),
-			isAdmin: await checkAdmin(searchUser.email),
+			token: generateToken(searchUser!._id.toString(), details.email),
+			isAdmin: await checkAdmin(searchUser!.email),
 		});
 	} catch (error) {
 		next(error);
