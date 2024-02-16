@@ -15,7 +15,7 @@ import favouriteRouter from './favourite';
 
 const assetRouter = Router();
 
-assetRouter.post('/create', fileUpload, createAsset);
+assetRouter.post('/create', isAuth, fileUpload, createAsset);
 
 assetRouter.delete('/', isAuth, isAdmin, deleteAsset);
 

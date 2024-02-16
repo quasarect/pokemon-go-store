@@ -70,7 +70,6 @@ export const getAssetById: RequestHandler = async (
 				Private = true;
 			}
 		}
-		console.log(Private);
 		const selectObject = Private ? '' : '-private';
 		const asset = await assetModel.findById(assetId).select(selectObject);
 		res.status(200).json(asset);
@@ -103,6 +102,7 @@ export const getAssetsByType: RequestHandler = async (
 						favorite._id.equals(asset._id.toString()),
 					);
 					// Add the isFav attribute to the asset object
+					console.log(asset._id, isFav);
 					//@ts-ignore
 					newAssets.push({ ...asset._doc, isFav });
 				});
