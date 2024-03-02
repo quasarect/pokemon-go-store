@@ -5,10 +5,12 @@ import { AssetTypes } from '../types/models/asset';
 import { IRequest } from '../types/IRequest';
 import userModel from '../models/user';
 import mongoose from 'mongoose';
+import { checkAdmin } from '../middlewares/adminCheck';
 
-export const createAsset: RequestHandler = async (req, res, next) => {
+export const createAsset: RequestHandler = async (req: IRequest, res, next) => {
 	try {
-		const { files, assetType, price, info, display, privateDetails } = req.body;
+		const { files, assetType, price, info, display, privateDetails, count } =
+			req.body;
 		if (!assetType && !price) {
 			throw new IError('Price and type is required', 400);
 		}
@@ -19,9 +21,55 @@ export const createAsset: RequestHandler = async (req, res, next) => {
 			info: JSON.parse(info),
 			display: JSON.parse(display),
 			private: JSON.parse(privateDetails),
+			count,
+			approved: checkAdmin(req.user!.email),
+			assetOwner: req.user!.id,
 		});
 		await asset.save();
 		res.status(200).json({ message: 'Asset created' });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getAssetSkeleton: RequestHandler = async (req, res, next) => {
+	try {
+	} catch (error) {
+		next(error);
+	}
+};
+export const approveAsset: RequestHandler = async (req, res, next) => {
+	try {
+		const { assetId } = req.body.assetId;
+		await assetModel.findByIdAndUpdate(assetId, {
+			$set: { approved: true },
+		});
+		res.status(200).json({ message: 'Asset approved' });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const disapproveAsset: RequestHandler = async (req, res, next) => {
+	try {
+		const { assetId } = req.body.assetId;
+		await assetModel.findByIdAndUpdate(assetId, {
+			$set: { rejected: false },
+		});
+		res.status(200).json({ message: 'Asset approved' });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getListOfPendingApprovalAssets: RequestHandler = async (
+	req,
+	res,
+	next,
+) => {
+	try {
+		const assets = await assetModel.find({ approved: false });
+		res.status(200).json(assets);
 	} catch (error) {
 		next(error);
 	}
@@ -46,6 +94,7 @@ export const deleteAsset: RequestHandler = async (req, res, next) => {
 	try {
 		const { assetId } = req.body;
 		await assetModel.findByIdAndDelete(assetId);
+		//dleted all images
 		res.status(200).json({ message: `${assetId} deleted successfully` });
 	} catch (error) {
 		next(error);
@@ -89,7 +138,9 @@ export const getAssetsByType: RequestHandler = async (
 		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
 			throw new IError('AssetTyoe not valid', 400);
 		}
-		const assets = await assetModel.find({ assetType, available: true }).select('-private');
+		const assets = await assetModel
+			.find({ assetType, available: true, approved: true })
+			.select('-private');
 		let newAssets: Array<any> = [];
 		if (userId) {
 			const userFavourites = await userModel
@@ -111,6 +162,20 @@ export const getAssetsByType: RequestHandler = async (
 		const respAssets = newAssets.length > 0 ? newAssets : assets;
 		//@ts-ignore
 		res.status(200).json({ assets: respAssets });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getUploadedAssets: RequestHandler = async (
+	req: IRequest,
+	res,
+	next,
+) => {
+	try {
+		const userId = req.user?.id;
+		const assets = await assetModel.find({ assetOwner: userId });
+		res.status(200).json(assets);
 	} catch (error) {
 		next(error);
 	}

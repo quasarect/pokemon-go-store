@@ -11,6 +11,10 @@ export interface IAsset {
 	soldTo: ObjectId;
 	transaction: ObjectId;
 	isFav: boolean;
+	count: number;
+	approved: boolean;
+	rejected: boolean;
+	assetOwner: ObjectId;
 }
 
 export enum AssetTypes {

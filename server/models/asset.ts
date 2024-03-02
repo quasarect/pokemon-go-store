@@ -3,6 +3,12 @@ import { AssetTypes, IAsset } from '../types/models/asset';
 
 const assetSchema = new Schema<IAsset>(
 	{
+		assetOwner: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'user',
+			required: true,
+		},
+
 		media: {
 			type: Object,
 		},
@@ -35,6 +41,15 @@ const assetSchema = new Schema<IAsset>(
 		transaction: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'transaction',
+		},
+		count: {
+			type: Number,
+			default: 1,
+			required: true,
+		},
+		approved: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	{ timestamps: true },

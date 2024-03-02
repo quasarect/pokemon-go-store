@@ -4,7 +4,7 @@
 		"module": "commonjs",
 		"rootDir": ".",
 		"sourceMap": true,
-		"outDir": "./comp",
+		"outDir": "./dist",
 		"removeComments": true,
 		"noEmitOnError": true,
 		"esModuleInterop": true,

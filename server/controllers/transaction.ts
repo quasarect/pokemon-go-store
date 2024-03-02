@@ -135,10 +135,18 @@ export const buyAsset: RequestHandler = async (req: IRequest, res, next) => {
 	try {
 		const assetId = req.params.assetId;
 		const userId = req.user?.id;
-		console.log(assetId, userId);
 		const asset = await assetModel.findById(assetId);
 		if (!asset) {
 			throw new IError('Asset not found', 404);
+		}
+		if (asset.count === 0) {
+			throw new IError('Asset not available', 404);
+		}
+		if (asset.count > 0) {
+			asset.count -= 1;
+		}
+		if (asset.count === 0) {
+			asset.available = false;
 		}
 		const user = await userModel.findById(userId);
 		if (!user) {
@@ -151,6 +159,7 @@ export const buyAsset: RequestHandler = async (req: IRequest, res, next) => {
 			$push: { assets: assetId },
 			$inc: { credits: -asset.price },
 		});
+		await asset.save();
 		res.status(200).json({ message: 'Asset bought' });
 	} catch (error) {
 		next(error);
