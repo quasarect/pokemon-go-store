@@ -34,6 +34,7 @@ export const createAsset: RequestHandler = async (req: IRequest, res, next) => {
 
 export const getAssetSkeleton: RequestHandler = async (req, res, next) => {
 	try {
+		// const { assetType } = req.params;
 	} catch (error) {
 		next(error);
 	}
@@ -138,8 +139,13 @@ export const getAssetsByType: RequestHandler = async (
 		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
 			throw new IError('AssetTyoe not valid', 400);
 		}
+		//commented for now cause should be used in new db
 		const assets = await assetModel
-			.find({ assetType, available: true, approved: true })
+			.find({
+				assetType,
+				available: true,
+				// approved: true
+			})
 			.select('-private');
 		let newAssets: Array<any> = [];
 		if (userId) {
@@ -234,7 +240,7 @@ export const getGlobalSearch: RequestHandler = async (req, res, next) => {
 	try {
 		const { assetType, text } = req.params;
 		if (!Object.values(AssetTypes).includes(assetType as AssetTypes)) {
-			throw new IError('AssetTyoe not valid', 400);
+			throw new IError('AssetType not valid', 400);
 		}
 		await assetModel.find({
 			assetType,
